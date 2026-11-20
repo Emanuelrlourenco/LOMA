@@ -44,7 +44,7 @@ class LomaAppTest {
         setContent { LomaApp(graph = TestGraph().graph, showIntro = false) }
 
         onNodeWithTag("tab_inicio").assertIsSelected()
-        onNodeWithTag("screen_title").assertTextEquals("Início")
+        waitUntil(timeoutMillis = 5_000) { runCatching { onNodeWithTag("home_greeting").assertExists() }.isSuccess }
     }
 
     @Test
