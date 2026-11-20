@@ -13,6 +13,7 @@ import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertTextContains
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
+import androidx.compose.ui.test.performScrollTo
 import androidx.compose.ui.test.performTextReplacement
 import androidx.compose.ui.test.runComposeUiTest
 import app.loma.data.SettingKeys
@@ -47,7 +48,7 @@ class ServicesScreenTest {
         onNodeWithTag("service_name").performTextReplacement("Coloração")
         onNodeWithTag("service_duration").performTextReplacement("90")
         onNodeWithTag("service_price").performTextReplacement("180")
-        onNodeWithTag("save").performClick()
+        onNodeWithTag("save").performScrollTo().performClick()
 
         waitForData { g.repository.services().first().isNotEmpty() }
         val s = runBlocking { g.repository.services().first() }.single()
@@ -120,10 +121,10 @@ class ServicesScreenTest {
 
         onNodeWithTag("template").performTextReplacement("Olá {nome}, até {quando}!")
         waitForText("Olá Maria, até hoje!")
-        onNodeWithTag("save").performClick()
+        onNodeWithTag("save").performScrollTo().performClick()
         waitForData { g.repository.setting(SettingKeys.WHATSAPP_TEMPLATE).first() == "Olá {nome}, até {quando}!" }
 
-        onNodeWithTag("restore_default").performClick()
+        onNodeWithTag("restore_default").performScrollTo().performClick()
         onNodeWithTag("template").assertTextContains(ConfirmationMessage.DEFAULT_TEMPLATE)
     }
 }
