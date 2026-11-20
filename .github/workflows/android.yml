@@ -33,3 +33,10 @@ jobs:
         with:
           name: relatorios-de-teste
           path: "**/build/reports/tests/"
+      - name: Schema do banco (para versionar)
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: room-schemas
+          path: shared/data/schemas/
+          if-no-files-found: ignore
