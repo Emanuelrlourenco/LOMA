@@ -20,6 +20,10 @@ kotlin {
         commonMain.dependencies {
             implementation(libs.kotlinx.coroutines.core)
         }
+        androidMain.dependencies {
+            // BiometricPrompt (digital e bloqueio do celular); expõe FragmentActivity no AndroidDeviceAuth.
+            api(libs.androidx.biometric)
+        }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }
