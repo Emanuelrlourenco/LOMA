@@ -43,7 +43,7 @@ class NavigatorTest {
     fun todasAsRotasVoltamIguaisDoTexto() {
         val rotas = listOf(
             Route.ClientDetail(5), Route.ClientEdit(null), Route.ClientEdit(7), Route.AppointmentDetail(42),
-            Route.AppointmentEdit(null, null, null), Route.AppointmentEdit(3, 4, 5), Route.AppointmentEdit(null, 4, null),
+            Route.AppointmentEdit(null, null, null), Route.AppointmentEdit(3, 4, 5), Route.AppointmentEdit(null, 4, null), Route.AppointmentEdit(null, null, null, "2026-11-25"),
             Route.CompleteAppointment(9), Route.Settings, Route.Services, Route.ServiceEdit(null), Route.ServiceEdit(2),
             Route.MessageTemplate,
         )
