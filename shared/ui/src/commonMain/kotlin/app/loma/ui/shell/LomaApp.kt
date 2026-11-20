@@ -16,6 +16,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.backhandler.BackHandler
+import app.loma.ui.intro.LomaIntro
+import app.loma.ui.intro.rememberReducedMotion
 import app.loma.ui.theme.LocalLomaColors
 import app.loma.ui.theme.LomaTheme
 import org.jetbrains.compose.resources.stringResource
@@ -23,9 +25,15 @@ import org.jetbrains.compose.resources.stringResource
 /** Raiz do app, usada por Android e iOS. */
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-fun LomaApp(darkTheme: Boolean = isSystemInDarkTheme()) {
+fun LomaApp(
+    darkTheme: Boolean = isSystemInDarkTheme(),
+    showIntro: Boolean = true,
+    soundEnabled: Boolean = true,
+) {
     LomaTheme(darkTheme = darkTheme) {
         var tabName by rememberSaveable { mutableStateOfName(LomaTab.Inicio) }
+        // A abertura toca só na abertura do zero: girar a tela ou recriar a Activity não repete.
+        var introDone by rememberSaveable { androidx.compose.runtime.mutableStateOf(!showIntro) }
         val tab = LomaTab.valueOf(tabName)
         BackHandler(enabled = tab != LomaTab.Inicio) {
             tab.back()?.let { tabName = it.name }
@@ -35,6 +43,13 @@ fun LomaApp(darkTheme: Boolean = isSystemInDarkTheme()) {
                 PlaceholderScreen(stringResource(tab.label))
             }
             LomaBottomBar(selected = tab, onSelect = { tabName = it.name })
+        }
+        if (!introDone) {
+            LomaIntro(
+                soundEnabled = soundEnabled,
+                reducedMotion = rememberReducedMotion(),
+                onFinished = { introDone = true },
+            )
         }
     }
 }

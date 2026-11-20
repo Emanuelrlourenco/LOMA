@@ -7,4 +7,6 @@
     <string name="tab_financeiro">Financeiro</string>
     <string name="placeholder_soon">Em construção — chega na próxima fase</string>
     <string name="nav_label">Navegação principal</string>
+    <string name="intro_desc">Abertura do LOMA</string>
+    <string name="intro_skip">Pular abertura</string>
 </resources>

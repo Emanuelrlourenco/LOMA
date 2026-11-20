@@ -7,4 +7,6 @@
     <string name="tab_financeiro">Finances</string>
     <string name="placeholder_soon">Under construction — coming in the next phase</string>
     <string name="nav_label">Main navigation</string>
+    <string name="intro_desc">LOMA opening</string>
+    <string name="intro_skip">Skip opening</string>
 </resources>
