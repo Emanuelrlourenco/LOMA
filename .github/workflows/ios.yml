@@ -1,0 +1,32 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 The LOMA Authors
+name: iOS
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: XcodeGen
+        run: brew install xcodegen
+      - name: Testes no simulador iOS
+        run: ./gradlew --stacktrace --continue :shared:salon:iosSimulatorArm64Test :shared:ui:iosSimulatorArm64Test
+      - name: Projeto Xcode
+        run: xcodegen generate --spec iosApp/project.yml
+      - name: Build do app (simulador)
+        run: |
+          set -o pipefail
+          xcodebuild -project iosApp/LOMA.xcodeproj -scheme LOMA -sdk iphonesimulator \
+            -destination 'generic/platform=iOS Simulator' CODE_SIGNING_ALLOWED=NO build | tail -40

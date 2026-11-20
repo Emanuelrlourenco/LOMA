@@ -9,6 +9,9 @@ plugins {
 // APK único: versionCode sempre maior (número da execução do CI), para instalar por cima.
 val runNumber = System.getenv("GITHUB_RUN_NUMBER")?.toIntOrNull() ?: 1
 
+// Chave de assinatura do APK único (Secrets do GitHub no CI). Sem ela, o release local é assinado com a chave de depuração.
+val releaseKeystore = System.getenv("LOMA_KEYSTORE_FILE")?.let { file(it) }?.takeIf { it.exists() }
+
 android {
     namespace = "app.loma.calendar"
     compileSdk = libs.versions.android.compileSdk.get().toInt()
@@ -19,6 +22,25 @@ android {
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = runNumber
         versionName = "0.1.$runNumber"
+    }
+
+    signingConfigs {
+        if (releaseKeystore != null) {
+            create("release") {
+                storeFile = releaseKeystore
+                storePassword = System.getenv("LOMA_KEYSTORE_PASSWORD")
+                keyAlias = System.getenv("LOMA_KEY_ALIAS")
+                keyPassword = System.getenv("LOMA_KEY_PASSWORD")
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            // R8 desligado nesta fase.
+            isMinifyEnabled = false
+            signingConfig = signingConfigs.findByName("release") ?: signingConfigs.getByName("debug")
+        }
     }
 }
 

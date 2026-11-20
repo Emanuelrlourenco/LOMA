@@ -21,22 +21,46 @@ jobs:
       - uses: gradle/actions/setup-gradle@v4
       - name: Cabeçalhos de licença
         run: tools/ci/check-spdx.sh .
-      - name: Autoteste do verificador de cabeçalhos
-        run: "! tools/ci/check-spdx.sh tools/ci/fixtures/spdx"
-      - name: Configuração do projeto
-        run: ./gradlew --stacktrace help
-      - name: Testes (JVM)
-        run: ./gradlew --stacktrace --continue :shared:salon:jvmTest :shared:data:jvmTest :shared:ui:jvmTest :shared:ui:compileAndroidMain :androidApp:testDebugUnitTest :androidApp:assembleDebug
+      - name: Autoteste dos verificadores (cada fixture deve ser recusada)
+        run: |
+          F=tools/ci/fixtures/network
+          ! tools/ci/check-spdx.sh tools/ci/fixtures/spdx
+          ! tools/ci/check-no-network.sh $F/kt
+          ! tools/ci/check-no-network.sh $F/swift
+          mkdir -p /tmp/vazio && ! tools/ci/check-no-network.sh /tmp/vazio $F/AndroidManifest-internet.xml
+          ! tools/ci/check-dependencies.sh $F/deps-bad.txt
+          ! tools/ci/check-dependencies.sh $F/deps-unknown.txt
+      - name: Testes
+        run: ./gradlew --stacktrace --continue :shared:salon:jvmTest :shared:data:jvmTest :shared:ui:jvmTest :androidApp:testDebugUnitTest
       - name: Relatórios de teste
         if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: relatorios-de-teste
-          path: "**/build/reports/tests/"
-      - name: APK de depuração
-        run: ls -la androidApp/build/outputs/apk/debug/
+          path: "**/build/reports/"
+      - name: APK de depuração e lint
+        run: ./gradlew --stacktrace :androidApp:assembleDebug :androidApp:lintDebug
+      - name: Lint (problemas encontrados)
+        if: failure()
+        run: find androidApp/build/reports -name 'lint-results-debug.txt' -exec cat {} \; || true
+      - name: Sem rede (código e manifest mesclado)
+        run: tools/ci/check-no-network.sh . "$(find androidApp/build/intermediates/merged_manifest/debug -name AndroidManifest.xml | head -1)"
+      - name: Dependências permitidas
+        run: |
+          ./gradlew -q :androidApp:dependencies --configuration releaseRuntimeClasspath \
+            | grep -oE '[A-Za-z0-9_.-]+:[A-Za-z0-9_.-]+:[A-Za-z0-9_.+-]+' | cut -d: -f1,2 | sort -u > deps.txt
+          wc -l deps.txt
+          tools/ci/check-dependencies.sh deps.txt
       - name: Capturas de tela (Roborazzi)
         run: ./gradlew :shared:ui:recordRoborazziJvm
+      - uses: actions/upload-artifact@v4
+        with:
+          name: loma-debug-apk
+          path: androidApp/build/outputs/apk/debug/*.apk
+      - uses: actions/upload-artifact@v4
+        with:
+          name: screenshots
+          path: shared/ui/screenshots/*.png
       - name: Capturas no log (para revisão)
         run: |
           for f in shared/ui/screenshots/*.png; do
@@ -49,3 +73,51 @@ jobs:
           find shared/data/schemas -name '*.json' -print0 2>/dev/null | while IFS= read -r -d '' f; do
             echo "::group::SCHEMA $f"; echo "===SCHEMA-BEGIN $f==="; base64 -w0 "$f"; echo; echo "===SCHEMA-END==="; echo "::endgroup::"
           done
+
+  # APK único: cada versão nova instala por cima da anterior (mesma chave, versionCode sempre maior).
+  publicar:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "21"
+      - uses: gradle/actions/setup-gradle@v4
+      - name: Chave de assinatura
+        env:
+          LOMA_KEYSTORE_BASE64: ${{ secrets.LOMA_KEYSTORE_BASE64 }}
+        run: |
+          if [ -z "$LOMA_KEYSTORE_BASE64" ]; then
+            echo "::error::Faltam os Secrets da chave (LOMA_KEYSTORE_BASE64, LOMA_KEYSTORE_PASSWORD, LOMA_KEY_ALIAS, LOMA_KEY_PASSWORD). Sem eles o APK não instalaria por cima; nada foi publicado."
+            exit 1
+          fi
+          echo "$LOMA_KEYSTORE_BASE64" | base64 -d > "$RUNNER_TEMP/loma-release.jks"
+          echo "LOMA_KEYSTORE_FILE=$RUNNER_TEMP/loma-release.jks" >> "$GITHUB_ENV"
+      - name: APK de release assinado
+        env:
+          LOMA_KEYSTORE_PASSWORD: ${{ secrets.LOMA_KEYSTORE_PASSWORD }}
+          LOMA_KEY_ALIAS: ${{ secrets.LOMA_KEY_ALIAS }}
+          LOMA_KEY_PASSWORD: ${{ secrets.LOMA_KEY_PASSWORD }}
+        run: |
+          ./gradlew --stacktrace :androidApp:assembleRelease
+          cp "$(find androidApp/build/outputs/apk/release -name '*.apk' | head -1)" LOMA.apk
+          "$ANDROID_HOME"/build-tools/*/apksigner verify --print-certs LOMA.apk | head -3 || true
+      - name: Atualizar o pré-lançamento "loma-mais-recente"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          versao="0.1.${GITHUB_RUN_NUMBER}"
+          notas="LOMA versão ${versao} (commit ${GITHUB_SHA::7}). Baixe LOMA.apk e instale por cima da versão anterior."
+          git tag -f loma-mais-recente "$GITHUB_SHA"
+          git push -f origin refs/tags/loma-mais-recente
+          if gh release view loma-mais-recente >/dev/null 2>&1; then
+            gh release edit loma-mais-recente --prerelease --title "LOMA ${versao}" --notes "$notas"
+          else
+            gh release create loma-mais-recente --prerelease --title "LOMA ${versao}" --notes "$notas"
+          fi
+          gh release upload loma-mais-recente LOMA.apk --clobber
