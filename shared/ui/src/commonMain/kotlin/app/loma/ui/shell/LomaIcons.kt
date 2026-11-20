@@ -27,6 +27,13 @@ internal object LomaIcons {
         "M3 10h18",
         "M15.3 15a1.2 1.2 0 1 0 2.4 0a1.2 1.2 0 1 0-2.4 0z")
 
+    val Voltar = icon("voltar", 2.2f, StrokeCap.Round, StrokeJoin.Round, "M15 5l-7 7 7 7")
+    val Subir = icon("subir", 2.2f, StrokeCap.Round, StrokeJoin.Round, "M6 15l6-6 6 6")
+    val Descer = icon("descer", 2.2f, StrokeCap.Round, StrokeJoin.Round, "M6 9l6 6 6-6")
+    val Mais = icon("mais", 2.4f, StrokeCap.Round, StrokeJoin.Round, "M12 5v14M5 12h14")
+    val Sino = icon("sino", 1.9f, StrokeCap.Round, StrokeJoin.Round, "M6 16v-5a6 6 0 0 1 12 0v5l1.5 2h-15z", "M10 20.5a2 2 0 0 0 4 0")
+    val Seta = icon("seta", 2f, StrokeCap.Round, StrokeJoin.Round, "M9 6l6 6-6 6")
+
     private fun icon(name: String, width: Float, cap: StrokeCap, join: StrokeJoin, vararg paths: String): ImageVector {
         val builder = ImageVector.Builder(name, 24.dp, 24.dp, 24f, 24f)
         paths.forEach {

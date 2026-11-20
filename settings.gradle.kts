@@ -19,4 +19,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "loma"
 
-include(":shared:salon", ":shared:data", ":shared:ui", ":androidApp")
+include(":shared:salon", ":shared:data", ":shared:ui", ":shared:platform", ":androidApp")

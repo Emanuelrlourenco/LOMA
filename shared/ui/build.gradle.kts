@@ -28,13 +28,19 @@ kotlin {
     }
 
     sourceSets {
+        all { languageSettings.optIn("kotlin.time.ExperimentalTime") }
         commonMain.dependencies {
+            api(project(":shared:data"))
+            api(project(":shared:platform"))
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.ui)
             implementation(libs.compose.material3)
             implementation(libs.compose.components.resources)
             implementation(libs.compose.ui.backhandler)
+        }
+        androidMain.dependencies {
+            implementation(libs.androidx.activity.compose)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)

@@ -9,4 +9,206 @@
     <string name="nav_label">Navegação principal</string>
     <string name="intro_desc">Abertura do LOMA</string>
     <string name="intro_skip">Pular abertura</string>
+    <string name="back">Voltar</string>
+    <string name="save">Salvar</string>
+    <string name="money_invalid">Valor inválido</string>
+    <string name="move_up">Subir</string>
+    <string name="move_down">Descer</string>
+    <string name="settings_title">Ajustes</string>
+    <string name="settings_profile">Perfil</string>
+    <string name="settings_profile_name">Seu nome (aparece na saudação)</string>
+    <string name="settings_services">Serviços</string>
+    <string name="settings_services_hint">Nome, duração e preço de cada serviço</string>
+    <string name="settings_message">Mensagem do WhatsApp</string>
+    <string name="settings_message_hint">Texto para confirmar o horário com a cliente</string>
+    <string name="services_title">Serviços</string>
+    <string name="services_new">+ Novo serviço</string>
+    <string name="services_empty">Nenhum serviço ainda. Cadastre cada serviço com duração e preço.</string>
+    <string name="service_new_title">Novo serviço</string>
+    <string name="service_edit_title">Editar serviço</string>
+    <string name="service_name">Nome</string>
+    <string name="service_duration">Duração (minutos)</string>
+    <string name="service_price">Preço</string>
+    <string name="service_color">Cor</string>
+    <string name="service_active">Ativo</string>
+    <string name="message_title">Mensagem do WhatsApp</string>
+    <string name="message_fields">Toque para inserir:</string>
+    <string name="message_restore">Restaurar padrão</string>
+    <string name="message_preview">Prévia</string>
+    <string name="when_today">hoje</string>
+    <string name="when_tomorrow">amanhã</string>
+    <string name="list_and">e</string>
+    <string name="sample_client">Maria Souza</string>
+    <string name="sample_service_1">Coloração</string>
+    <string name="sample_service_2">Escova</string>
+    <string name="clients_title">Clientes</string>
+    <string name="clients_search">Buscar por nome ou telefone</string>
+    <string name="clients_sort_name">Nome</string>
+    <string name="clients_sort_last">Última visita</string>
+    <string name="clients_show_archived">Mostrar arquivadas</string>
+    <string name="clients_new">+ Nova cliente</string>
+    <string name="clients_empty">Nenhuma cliente ainda. Cadastre a primeira em “+ Nova cliente”.</string>
+    <string name="client_detail_title">Ficha da cliente</string>
+    <string name="client_whatsapp">WhatsApp</string>
+    <string name="client_call">Ligar</string>
+    <string name="client_book">Agendar</string>
+    <string name="client_allergy">Alergia:</string>
+    <string name="stat_last">Última visita</string>
+    <string name="stat_visits">Visitas</string>
+    <string name="stat_total">Total gasto</string>
+    <string name="stat_ticket">Ticket médio</string>
+    <string name="client_preferences">Preferências</string>
+    <string name="client_notes">Observações</string>
+    <string name="client_history">Histórico</string>
+    <string name="client_history_empty">Nenhum atendimento ainda.</string>
+    <string name="client_cancellations">%1$d desmarques</string>
+    <string name="client_more">Mais opções</string>
+    <string name="menu_edit">Editar</string>
+    <string name="menu_archive">Arquivar</string>
+    <string name="menu_unarchive">Desarquivar</string>
+    <string name="menu_delete">Apagar</string>
+    <string name="delete_title">Apagar %1$s?</string>
+    <string name="delete_text">Os atendimentos concluídos continuam no financeiro como “Cliente removida” e os futuros serão desmarcados.</string>
+    <string name="cancel">Cancelar</string>
+    <string name="client_removed">Cliente removida</string>
+    <string name="birthday_short">aniversário %1$s</string>
+    <string name="client_new_title">Nova cliente</string>
+    <string name="client_edit_title">Editar cliente</string>
+    <string name="client_from_contacts">Escolher dos contatos</string>
+    <string name="client_photo_pick">Escolher foto</string>
+    <string name="client_photo_remove">Remover foto</string>
+    <string name="client_name">Nome</string>
+    <string name="client_phone">WhatsApp</string>
+    <string name="phone_invalid">Número inválido</string>
+    <string name="birthday_day">Dia</string>
+    <string name="birthday_month">Mês</string>
+    <string name="birthday_year">Ano (opcional)</string>
+    <string name="client_birthday">Aniversário</string>
+    <string name="birthday_invalid">Data inválida</string>
+    <string name="client_allergies">Alergias e sensibilidades</string>
+    <string name="client_archived">Arquivada</string>
+    <string name="reason_cancelou">cancelou</string>
+    <string name="reason_nao_compareceu">não compareceu</string>
+    <string name="reason_remarcou">remarcou</string>
+    <string name="history_unscheduled">Desmarcado · %1$s</string>
+    <string name="no_messaging">Nenhum app de mensagem encontrado</string>
+    <string-array name="months_short">
+        <item>jan</item>
+        <item>fev</item>
+        <item>mar</item>
+        <item>abr</item>
+        <item>mai</item>
+        <item>jun</item>
+        <item>jul</item>
+        <item>ago</item>
+        <item>set</item>
+        <item>out</item>
+        <item>nov</item>
+        <item>dez</item>
+    </string-array>
+    <string name="appt_new_title">Novo atendimento</string>
+    <string name="appt_edit_title">Editar atendimento</string>
+    <string name="appt_client">Cliente</string>
+    <string name="appt_choose_client">Escolher cliente</string>
+    <string name="appt_new_client">+ Nova cliente</string>
+    <string name="appt_services">Serviços</string>
+    <string name="appt_date">Data</string>
+    <string name="appt_time">Início (hh:mm)</string>
+    <string name="appt_value">Valor</string>
+    <string name="appt_note">Anotação</string>
+    <string name="appt_repeat">Repetir toda semana</string>
+    <string name="appt_repeat_times">Quantas vezes, contando esta (2 a 12)</string>
+    <string name="appt_conflict">Já existe atendimento nesse horário: %1$s</string>
+    <string name="appt_book">Agendar</string>
+    <string name="appt_no_services">Cadastre os serviços em Ajustes › Serviços.</string>
+    <string name="time_invalid">Hora inválida</string>
+    <string name="ok">OK</string>
+    <string name="appt_choose_time">Escolher hora</string>
+    <string name="appt_search_client">Buscar cliente</string>
+    <string-array name="weekdays_short">
+        <item>dom</item>
+        <item>seg</item>
+        <item>ter</item>
+        <item>qua</item>
+        <item>qui</item>
+        <item>sex</item>
+        <item>sáb</item>
+    </string-array>
+    <string name="status_scheduled">Agendado · não confirmada</string>
+    <string name="status_confirmed">Confirmado</string>
+    <string name="status_done">Concluído · %1$s</string>
+    <string name="status_unscheduled">Desmarcado · %1$s</string>
+    <string name="confirm_whatsapp">Confirmar pelo WhatsApp</string>
+    <string name="confirm_sms">Confirmar por SMS</string>
+    <string name="action_confirmed">Confirmado</string>
+    <string name="action_complete">Concluir</string>
+    <string name="action_unschedule">Desmarcar</string>
+    <string name="action_reopen">Reabrir</string>
+    <string name="action_reschedule">Remarcar</string>
+    <string name="reopen_confirm">Reabrir? O valor sai dos ganhos realizados.</string>
+    <string name="delete_appt_confirm">Apagar este atendimento? O valor sai dos ganhos realizados.</string>
+    <string name="client_confirmed_q">A cliente confirmou?</string>
+    <string name="not_yet">Ainda não</string>
+    <string name="open_with">Abrir com…</string>
+    <string name="app_whatsapp">WhatsApp</string>
+    <string name="app_business">WhatsApp Business</string>
+    <string name="app_sms">SMS</string>
+    <string name="no_phone">Cadastre o WhatsApp da cliente</string>
+    <string name="undo">Desfazer</string>
+    <string name="appt_updated">Atendimento atualizado</string>
+    <string name="unschedule_title">Por que desmarcou?</string>
+    <string name="reason_title_cancelou">Cancelou</string>
+    <string name="reason_title_nao_compareceu">Não compareceu</string>
+    <string name="reason_title_remarcou">Remarcou</string>
+    <string name="appt_menu">Mais opções</string>
+    <string name="complete_title">Concluir atendimento</string>
+    <string name="complete_expected">Valor esperado</string>
+    <string name="complete_final">Valor final</string>
+    <string name="complete_help">Ajuste se teve serviço extra ou desconto.</string>
+    <string name="complete_diff">%1$s em relação ao esperado</string>
+    <string name="complete_paid_date">Data do pagamento</string>
+    <string name="complete_note">Anotação do atendimento</string>
+    <string name="complete_note_hint">(vai para a ficha)</string>
+    <string name="complete_confirm">Concluir e lançar no caixa</string>
+    <string name="complete_value_required">Informe o valor final</string>
+    <string name="greeting_morning">Bom dia,</string>
+    <string name="greeting_afternoon">Boa tarde,</string>
+    <string name="greeting_evening">Boa noite,</string>
+    <string name="cards_today">Atendimentos de hoje</string>
+    <string name="cards_day">Atendimentos de %1$s</string>
+    <string name="day_summary">previsto %1$s · recebido %2$s</string>
+    <string name="notice_settlement">%1$d atendimentos sem baixa — concluir ou desmarcar</string>
+    <string name="notice_settlement_one">1 atendimento sem baixa — concluir ou desmarcar</string>
+    <string name="notice_birthday">Hoje é aniversário de %1$s</string>
+    <string name="birthday_message">Parabéns, %1$s! Feliz aniversário! 🎉</string>
+    <string name="card_not_confirmed">Não confirmada</string>
+    <string name="card_confirmed">%1$s · Confirmada</string>
+    <string name="card_done">Concluída · %1$s</string>
+    <string name="no_appointments">Nenhum atendimento neste dia</string>
+    <string name="open_settings">Ajustes</string>
+    <string name="notices">Avisos</string>
+    <string name="new_appointment">Novo atendimento</string>
+    <string-array name="months_full">
+        <item>Janeiro</item>
+        <item>Fevereiro</item>
+        <item>Março</item>
+        <item>Abril</item>
+        <item>Maio</item>
+        <item>Junho</item>
+        <item>Julho</item>
+        <item>Agosto</item>
+        <item>Setembro</item>
+        <item>Outubro</item>
+        <item>Novembro</item>
+        <item>Dezembro</item>
+    </string-array>
+    <string-array name="weekdays_header">
+        <item>DOM</item>
+        <item>SEG</item>
+        <item>TER</item>
+        <item>QUA</item>
+        <item>QUI</item>
+        <item>SEX</item>
+        <item>SÁB</item>
+    </string-array>
 </resources>

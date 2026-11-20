@@ -9,6 +9,11 @@ on:
 permissions:
   contents: read
 
+# Um push novo cancela o build iOS anterior do mesmo ramo (o macOS é lento e tem fila).
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: macos-latest
@@ -22,7 +27,7 @@ jobs:
       - name: XcodeGen
         run: brew install xcodegen
       - name: Testes no simulador iOS
-        run: ./gradlew --stacktrace --continue :shared:salon:iosSimulatorArm64Test :shared:ui:iosSimulatorArm64Test
+        run: ./gradlew --stacktrace --continue :shared:salon:iosSimulatorArm64Test :shared:ui:iosSimulatorArm64Test :shared:platform:iosSimulatorArm64Test
       - name: Projeto Xcode
         run: xcodegen generate --spec iosApp/project.yml
       - name: Build do app (simulador)

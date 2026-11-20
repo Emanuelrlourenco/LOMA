@@ -31,7 +31,7 @@ jobs:
           ! tools/ci/check-dependencies.sh $F/deps-bad.txt
           ! tools/ci/check-dependencies.sh $F/deps-unknown.txt
       - name: Testes
-        run: ./gradlew --stacktrace --continue :shared:salon:jvmTest :shared:data:jvmTest :shared:ui:jvmTest :androidApp:testDebugUnitTest
+        run: ./gradlew --stacktrace --continue :shared:salon:jvmTest :shared:data:jvmTest :shared:ui:jvmTest :shared:platform:jvmTest :androidApp:testDebugUnitTest
       - name: Relatórios de teste
         if: failure()
         uses: actions/upload-artifact@v4

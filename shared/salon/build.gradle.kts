@@ -17,6 +17,10 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
+        all { languageSettings.optIn("kotlin.time.ExperimentalTime") }
+        commonMain.dependencies {
+            api(libs.kotlinx.datetime)
+        }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }

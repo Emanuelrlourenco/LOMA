@@ -20,6 +20,12 @@ interface ServiceDao {
     @Query("SELECT * FROM services WHERE active = 1 ORDER BY sortOrder, id")
     fun observeActive(): Flow<List<ServiceEntity>>
 
+    @Query("SELECT * FROM services WHERE id = :id")
+    fun observeById(id: Long): Flow<ServiceEntity?>
+
+    @Query("UPDATE services SET sortOrder = :order WHERE id = :id")
+    suspend fun setOrder(id: Long, order: Int)
+
     @Query("SELECT * FROM services ORDER BY sortOrder, id")
     fun observeAll(): Flow<List<ServiceEntity>>
 }

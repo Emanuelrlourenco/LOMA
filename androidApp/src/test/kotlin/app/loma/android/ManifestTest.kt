@@ -63,6 +63,16 @@ class ManifestTest {
     }
 
     @Test
+    fun declaraConsultaAoWhatsApp() {
+        val queries = manifest.getElementsByTagName("queries")
+        val pacotes = (0 until queries.length).flatMap { q ->
+            val pkgs = (queries.item(q) as Element).getElementsByTagName("package")
+            (0 until pkgs.length).map { (pkgs.item(it) as Element).getAttributeNS(androidNs, "name") }
+        }
+        assertTrue("com.whatsapp" in pacotes && "com.whatsapp.w4b" in pacotes, "queries: $pacotes")
+    }
+
+    @Test
     fun abreNaMainActivity() {
         val activities = manifest.getElementsByTagName("activity")
         val names = (0 until activities.length).map { (activities.item(it) as Element).getAttributeNS(androidNs, "name") }

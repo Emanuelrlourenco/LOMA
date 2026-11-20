@@ -9,4 +9,206 @@
     <string name="nav_label">Main navigation</string>
     <string name="intro_desc">LOMA opening</string>
     <string name="intro_skip">Skip opening</string>
+    <string name="back">Back</string>
+    <string name="save">Save</string>
+    <string name="money_invalid">Invalid amount</string>
+    <string name="move_up">Move up</string>
+    <string name="move_down">Move down</string>
+    <string name="settings_title">Settings</string>
+    <string name="settings_profile">Profile</string>
+    <string name="settings_profile_name">Your name (shown in the greeting)</string>
+    <string name="settings_services">Services</string>
+    <string name="settings_services_hint">Name, length and price of each service</string>
+    <string name="settings_message">WhatsApp message</string>
+    <string name="settings_message_hint">Text to confirm the appointment with the client</string>
+    <string name="services_title">Services</string>
+    <string name="services_new">+ New service</string>
+    <string name="services_empty">No services yet. Add each service with its length and price.</string>
+    <string name="service_new_title">New service</string>
+    <string name="service_edit_title">Edit service</string>
+    <string name="service_name">Name</string>
+    <string name="service_duration">Length (minutes)</string>
+    <string name="service_price">Price</string>
+    <string name="service_color">Color</string>
+    <string name="service_active">Active</string>
+    <string name="message_title">WhatsApp message</string>
+    <string name="message_fields">Tap to insert:</string>
+    <string name="message_restore">Restore default</string>
+    <string name="message_preview">Preview</string>
+    <string name="when_today">today</string>
+    <string name="when_tomorrow">tomorrow</string>
+    <string name="list_and">and</string>
+    <string name="sample_client">Maria Souza</string>
+    <string name="sample_service_1">Hair color</string>
+    <string name="sample_service_2">Blow-dry</string>
+    <string name="clients_title">Clients</string>
+    <string name="clients_search">Search by name or phone</string>
+    <string name="clients_sort_name">Name</string>
+    <string name="clients_sort_last">Last visit</string>
+    <string name="clients_show_archived">Show archived</string>
+    <string name="clients_new">+ New client</string>
+    <string name="clients_empty">No clients yet. Add the first one with “+ New client”.</string>
+    <string name="client_detail_title">Client record</string>
+    <string name="client_whatsapp">WhatsApp</string>
+    <string name="client_call">Call</string>
+    <string name="client_book">Book</string>
+    <string name="client_allergy">Allergy:</string>
+    <string name="stat_last">Last visit</string>
+    <string name="stat_visits">Visits</string>
+    <string name="stat_total">Total spent</string>
+    <string name="stat_ticket">Average</string>
+    <string name="client_preferences">Preferences</string>
+    <string name="client_notes">Notes</string>
+    <string name="client_history">History</string>
+    <string name="client_history_empty">No appointments yet.</string>
+    <string name="client_cancellations">%1$d cancellations</string>
+    <string name="client_more">More options</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_archive">Archive</string>
+    <string name="menu_unarchive">Unarchive</string>
+    <string name="menu_delete">Delete</string>
+    <string name="delete_title">Delete %1$s?</string>
+    <string name="delete_text">Completed appointments stay in the finances as “Removed client” and future ones will be cancelled.</string>
+    <string name="cancel">Cancel</string>
+    <string name="client_removed">Removed client</string>
+    <string name="birthday_short">birthday %1$s</string>
+    <string name="client_new_title">New client</string>
+    <string name="client_edit_title">Edit client</string>
+    <string name="client_from_contacts">Pick from contacts</string>
+    <string name="client_photo_pick">Choose photo</string>
+    <string name="client_photo_remove">Remove photo</string>
+    <string name="client_name">Name</string>
+    <string name="client_phone">WhatsApp</string>
+    <string name="phone_invalid">Invalid number</string>
+    <string name="birthday_day">Day</string>
+    <string name="birthday_month">Month</string>
+    <string name="birthday_year">Year (optional)</string>
+    <string name="client_birthday">Birthday</string>
+    <string name="birthday_invalid">Invalid date</string>
+    <string name="client_allergies">Allergies and sensitivities</string>
+    <string name="client_archived">Archived</string>
+    <string name="reason_cancelou">cancelled</string>
+    <string name="reason_nao_compareceu">no-show</string>
+    <string name="reason_remarcou">rescheduled</string>
+    <string name="history_unscheduled">Cancelled · %1$s</string>
+    <string name="no_messaging">No messaging app found</string>
+    <string-array name="months_short">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
+    <string name="appt_new_title">New appointment</string>
+    <string name="appt_edit_title">Edit appointment</string>
+    <string name="appt_client">Client</string>
+    <string name="appt_choose_client">Choose client</string>
+    <string name="appt_new_client">+ New client</string>
+    <string name="appt_services">Services</string>
+    <string name="appt_date">Date</string>
+    <string name="appt_time">Start (hh:mm)</string>
+    <string name="appt_value">Price</string>
+    <string name="appt_note">Note</string>
+    <string name="appt_repeat">Repeat every week</string>
+    <string name="appt_repeat_times">How many times, counting this one (2 to 12)</string>
+    <string name="appt_conflict">There is already an appointment at this time: %1$s</string>
+    <string name="appt_book">Book</string>
+    <string name="appt_no_services">Add your services in Settings › Services.</string>
+    <string name="time_invalid">Invalid time</string>
+    <string name="ok">OK</string>
+    <string name="appt_choose_time">Choose time</string>
+    <string name="appt_search_client">Search client</string>
+    <string-array name="weekdays_short">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
+    <string name="status_scheduled">Booked · not confirmed</string>
+    <string name="status_confirmed">Confirmed</string>
+    <string name="status_done">Completed · %1$s</string>
+    <string name="status_unscheduled">Cancelled · %1$s</string>
+    <string name="confirm_whatsapp">Confirm on WhatsApp</string>
+    <string name="confirm_sms">Confirm by SMS</string>
+    <string name="action_confirmed">Confirmed</string>
+    <string name="action_complete">Complete</string>
+    <string name="action_unschedule">Cancel</string>
+    <string name="action_reopen">Reopen</string>
+    <string name="action_reschedule">Reschedule</string>
+    <string name="reopen_confirm">Reopen? The amount leaves the earnings.</string>
+    <string name="delete_appt_confirm">Delete this appointment? The amount leaves the earnings.</string>
+    <string name="client_confirmed_q">Did the client confirm?</string>
+    <string name="not_yet">Not yet</string>
+    <string name="open_with">Open with…</string>
+    <string name="app_whatsapp">WhatsApp</string>
+    <string name="app_business">WhatsApp Business</string>
+    <string name="app_sms">SMS</string>
+    <string name="no_phone">Add the client’s WhatsApp number</string>
+    <string name="undo">Undo</string>
+    <string name="appt_updated">Appointment updated</string>
+    <string name="unschedule_title">Why was it cancelled?</string>
+    <string name="reason_title_cancelou">Client cancelled</string>
+    <string name="reason_title_nao_compareceu">No-show</string>
+    <string name="reason_title_remarcou">Rescheduled</string>
+    <string name="appt_menu">More options</string>
+    <string name="complete_title">Complete appointment</string>
+    <string name="complete_expected">Expected price</string>
+    <string name="complete_final">Final price</string>
+    <string name="complete_help">Adjust for extra services or discounts.</string>
+    <string name="complete_diff">%1$s compared with expected</string>
+    <string name="complete_paid_date">Payment date</string>
+    <string name="complete_note">Appointment note</string>
+    <string name="complete_note_hint">(goes to the client record)</string>
+    <string name="complete_confirm">Complete and record payment</string>
+    <string name="complete_value_required">Enter the final price</string>
+    <string name="greeting_morning">Good morning,</string>
+    <string name="greeting_afternoon">Good afternoon,</string>
+    <string name="greeting_evening">Good evening,</string>
+    <string name="cards_today">Today’s appointments</string>
+    <string name="cards_day">Appointments on %1$s</string>
+    <string name="day_summary">expected %1$s · received %2$s</string>
+    <string name="notice_settlement">%1$d appointments not settled — complete or cancel</string>
+    <string name="notice_settlement_one">1 appointment not settled — complete or cancel</string>
+    <string name="notice_birthday">Today is %1$s’s birthday</string>
+    <string name="birthday_message">Happy birthday, %1$s! 🎉</string>
+    <string name="card_not_confirmed">Not confirmed</string>
+    <string name="card_confirmed">%1$s · Confirmed</string>
+    <string name="card_done">Completed · %1$s</string>
+    <string name="no_appointments">No appointments on this day</string>
+    <string name="open_settings">Settings</string>
+    <string name="notices">Notices</string>
+    <string name="new_appointment">New appointment</string>
+    <string-array name="months_full">
+        <item>January</item>
+        <item>February</item>
+        <item>March</item>
+        <item>April</item>
+        <item>May</item>
+        <item>June</item>
+        <item>July</item>
+        <item>August</item>
+        <item>September</item>
+        <item>October</item>
+        <item>November</item>
+        <item>December</item>
+    </string-array>
+    <string-array name="weekdays_header">
+        <item>SUN</item>
+        <item>MON</item>
+        <item>TUE</item>
+        <item>WED</item>
+        <item>THU</item>
+        <item>FRI</item>
+        <item>SAT</item>
+    </string-array>
 </resources>
