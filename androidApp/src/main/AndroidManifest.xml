@@ -4,6 +4,12 @@
 <!-- O LOMA nunca acessa a internet: nenhuma permissão de rede é declarada (conferido por ManifestTest). -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
+    <!-- Só para saber se o WhatsApp está instalado (não é permissão). -->
+    <queries>
+        <package android:name="com.whatsapp" />
+        <package android:name="com.whatsapp.w4b" />
+    </queries>
+
     <application
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
