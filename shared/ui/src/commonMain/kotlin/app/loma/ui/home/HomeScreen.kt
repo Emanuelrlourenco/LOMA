@@ -192,7 +192,8 @@ fun HomeScreen() {
                 Notice(
                     if (unsettled.size == 1) stringResource(Res.string.notice_settlement_one) else stringResource(Res.string.notice_settlement, unsettled.size),
                     "notice_settlement",
-                ) { nav.push(Route.AppointmentDetail(unsettled.first().id)) }
+                    onClick = { nav.push(Route.AppointmentDetail(unsettled.first().id)) },
+                )
             }
             birthdays.forEach { c ->
                 Notice(stringResource(Res.string.notice_birthday, c.name), "notice_birthday_${c.id}", onClick = { nav.push(Route.ClientDetail(c.id)) }) {
