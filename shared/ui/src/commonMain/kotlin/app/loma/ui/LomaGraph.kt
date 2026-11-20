@@ -7,6 +7,8 @@ import androidx.compose.runtime.staticCompositionLocalOf
 import app.loma.data.SalonRepository
 import app.loma.platform.MessagingLauncher
 import app.loma.platform.PhotoStore
+import app.loma.platform.DeviceAuth
+import app.loma.ui.lock.AppLock
 import kotlin.time.Clock
 import kotlinx.datetime.TimeZone
 
@@ -16,6 +18,8 @@ class LomaGraph(
     val messaging: MessagingLauncher,
     val photos: PhotoStore,
     val clock: Clock,
+    val lock: AppLock,
+    val deviceAuth: DeviceAuth,
     val zone: () -> TimeZone,
 )
 

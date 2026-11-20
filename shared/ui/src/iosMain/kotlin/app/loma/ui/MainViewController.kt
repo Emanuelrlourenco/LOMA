@@ -9,6 +9,9 @@ import app.loma.data.buildLoma
 import app.loma.data.lomaDatabaseBuilder
 import app.loma.platform.IosMessagingLauncher
 import app.loma.platform.IosPhotoStore
+import app.loma.platform.IosDeviceAuth
+import app.loma.platform.IosKeyValueStore
+import app.loma.ui.lock.AppLock
 import app.loma.ui.shell.LomaApp
 import kotlin.time.Clock
 import kotlinx.datetime.TimeZone
@@ -21,6 +24,8 @@ private val iosGraph: LomaGraph by lazy {
         messaging = IosMessagingLauncher(),
         photos = IosPhotoStore(),
         clock = Clock.System,
+        lock = AppLock(IosKeyValueStore(), Clock.System),
+        deviceAuth = IosDeviceAuth(),
     ) { TimeZone.currentSystemDefault() }
 }
 
