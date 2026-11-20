@@ -106,4 +106,32 @@
         <item>nov</item>
         <item>dez</item>
     </string-array>
+    <string name="appt_new_title">Novo atendimento</string>
+    <string name="appt_edit_title">Editar atendimento</string>
+    <string name="appt_client">Cliente</string>
+    <string name="appt_choose_client">Escolher cliente</string>
+    <string name="appt_new_client">+ Nova cliente</string>
+    <string name="appt_services">Serviços</string>
+    <string name="appt_date">Data</string>
+    <string name="appt_time">Início (hh:mm)</string>
+    <string name="appt_value">Valor</string>
+    <string name="appt_note">Anotação</string>
+    <string name="appt_repeat">Repetir toda semana</string>
+    <string name="appt_repeat_times">Quantas vezes, contando esta (2 a 12)</string>
+    <string name="appt_conflict">Já existe atendimento nesse horário: %1$s</string>
+    <string name="appt_book">Agendar</string>
+    <string name="appt_no_services">Cadastre os serviços em Ajustes › Serviços.</string>
+    <string name="time_invalid">Hora inválida</string>
+    <string name="ok">OK</string>
+    <string name="appt_choose_time">Escolher hora</string>
+    <string name="appt_search_client">Buscar cliente</string>
+    <string-array name="weekdays_short">
+        <item>dom</item>
+        <item>seg</item>
+        <item>ter</item>
+        <item>qua</item>
+        <item>qui</item>
+        <item>sex</item>
+        <item>sáb</item>
+    </string-array>
 </resources>

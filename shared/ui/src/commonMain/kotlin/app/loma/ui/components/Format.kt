@@ -24,3 +24,20 @@ fun Money.toInput(): String {
 }
 
 fun twoDigits(n: Int): String = n.toString().padStart(2, '0')
+
+/** "13:00" a partir de hora e minuto. */
+fun hhmm(hour: Int, minute: Int): String = "${twoDigits(hour)}:${twoDigits(minute)}"
+
+/** Lê "13:00", "13h", "1300" ou "9:5" como hora e minuto; `null` se não for uma hora válida. */
+fun parseTime(text: String): Pair<Int, Int>? {
+    val t = text.trim().lowercase().replace('h', ':')
+    val (h, m) = when {
+        ':' in t -> t.substringBefore(':') to t.substringAfter(':').ifEmpty { "0" }
+        t.length in 3..4 && t.all(Char::isDigit) -> t.dropLast(2) to t.takeLast(2)
+        t.length in 1..2 && t.all(Char::isDigit) -> t to "0"
+        else -> return null
+    }
+    val hour = h.toIntOrNull() ?: return null
+    val minute = m.toIntOrNull() ?: return null
+    return if (hour in 0..23 && minute in 0..59) hour to minute else null
+}

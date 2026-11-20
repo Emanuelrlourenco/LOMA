@@ -106,4 +106,32 @@
         <item>Nov</item>
         <item>Dec</item>
     </string-array>
+    <string name="appt_new_title">New appointment</string>
+    <string name="appt_edit_title">Edit appointment</string>
+    <string name="appt_client">Client</string>
+    <string name="appt_choose_client">Choose client</string>
+    <string name="appt_new_client">+ New client</string>
+    <string name="appt_services">Services</string>
+    <string name="appt_date">Date</string>
+    <string name="appt_time">Start (hh:mm)</string>
+    <string name="appt_value">Price</string>
+    <string name="appt_note">Note</string>
+    <string name="appt_repeat">Repeat every week</string>
+    <string name="appt_repeat_times">How many times, counting this one (2 to 12)</string>
+    <string name="appt_conflict">There is already an appointment at this time: %1$s</string>
+    <string name="appt_book">Book</string>
+    <string name="appt_no_services">Add your services in Settings › Services.</string>
+    <string name="time_invalid">Invalid time</string>
+    <string name="ok">OK</string>
+    <string name="appt_choose_time">Choose time</string>
+    <string name="appt_search_client">Search client</string>
+    <string-array name="weekdays_short">
+        <item>Sun</item>
+        <item>Mon</item>
+        <item>Tue</item>
+        <item>Wed</item>
+        <item>Thu</item>
+        <item>Fri</item>
+        <item>Sat</item>
+    </string-array>
 </resources>
