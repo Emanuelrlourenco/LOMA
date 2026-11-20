@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<resources>
+    <string name="tab_inicio">Home</string>
+    <string name="tab_agenda">Calendar</string>
+    <string name="tab_clientes">Clients</string>
+    <string name="tab_financeiro">Finances</string>
+    <string name="placeholder_soon">Under construction — coming in the next phase</string>
+    <string name="nav_label">Main navigation</string>
+</resources>
