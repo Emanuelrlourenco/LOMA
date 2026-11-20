@@ -24,6 +24,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.text.font.FontWeight
@@ -148,7 +149,7 @@ fun LockScreen(autoPrompt: Boolean) {
             )
             if (canBiometric) {
                 Row(
-                    Modifier.height(52.dp).testTag("lock_biometric")
+                    Modifier.height(52.dp).testTag("lock_biometric").clip(RoundedCornerShape(26.dp))
                         .border(1.5.dp, LomaPalette.Mint, RoundedCornerShape(26.dp))
                         .clickable(role = Role.Button) { scope.launch { biometric() } }
                         .padding(horizontal = 22.dp),

@@ -22,6 +22,7 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
@@ -76,13 +77,13 @@ fun PinPad(length: Int, entered: Int, enabled: Boolean, onDigit: (Char) -> Unit,
                         '<' -> {
                             val label = stringResource(Res.string.pin_delete)
                             Box(
-                                mod.testTag("pin_key_back").clickable(enabled = enabled, role = Role.Button, onClick = onBack)
+                                mod.testTag("pin_key_back").clip(RoundedCornerShape(36.dp)).clickable(enabled = enabled, role = Role.Button, onClick = onBack)
                                     .semantics { contentDescription = label },
                                 contentAlignment = Alignment.Center,
                             ) { Icon(LomaIcons.Apagar, contentDescription = null, tint = Color.White, modifier = Modifier.size(28.dp)) }
                         }
                         else -> Box(
-                            mod.testTag("pin_key_$key").background(LockColors.Key, RoundedCornerShape(36.dp))
+                            mod.testTag("pin_key_$key").clip(RoundedCornerShape(36.dp)).background(LockColors.Key)
                                 .clickable(enabled = enabled, role = Role.Button) { onDigit(key) },
                             contentAlignment = Alignment.Center,
                         ) {
