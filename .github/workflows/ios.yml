@@ -9,6 +9,11 @@ on:
 permissions:
   contents: read
 
+# Um push novo cancela o build iOS anterior do mesmo ramo (o macOS é lento e tem fila).
+concurrency:
+  group: ios-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   build:
     runs-on: macos-latest
