@@ -33,6 +33,8 @@ jobs:
         with:
           name: relatorios-de-teste
           path: "**/build/reports/tests/"
+      - name: APK de depuração
+        run: ls -la androidApp/build/outputs/apk/debug/
       - name: Capturas de tela (Roborazzi)
         run: ./gradlew :shared:ui:recordRoborazziJvm
       - name: Capturas no log (para revisão)

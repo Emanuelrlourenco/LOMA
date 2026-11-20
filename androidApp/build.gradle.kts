@@ -33,4 +33,5 @@ dependencies {
 // O teste do manifest lê o manifest mesclado da variante debug.
 tasks.withType<Test>().configureEach {
     dependsOn("processDebugMainManifest")
+    testLogging { events("passed", "failed") }
 }
