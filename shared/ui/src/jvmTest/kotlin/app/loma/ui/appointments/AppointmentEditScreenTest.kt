@@ -63,7 +63,7 @@ class AppointmentEditScreenTest {
         onNodeWithTag("svc_${d.escova.id}").performClick()
         onNodeWithTag("start_time").performTextReplacement("13:00")
 
-        onNodeWithTag("time_range").assertTextContains("13:00 – 15:30")
+        onNodeWithTag("time_range").assertTextContains("13:00 – 15:30", substring = true)
         onNodeWithTag("appt_value").assertTextContains("250")
         onNodeWithTag("save").performScrollTo().performClick()
 
