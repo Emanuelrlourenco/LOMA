@@ -26,7 +26,7 @@ jobs:
       - name: Configuração do projeto
         run: ./gradlew --stacktrace help
       - name: Testes (JVM)
-        run: ./gradlew --stacktrace --continue :shared:salon:jvmTest :shared:data:jvmTest :shared:ui:jvmTest :shared:ui:compileAndroidMain
+        run: ./gradlew --stacktrace --continue :shared:salon:jvmTest :shared:data:jvmTest :shared:ui:jvmTest :shared:ui:compileAndroidMain :androidApp:testDebugUnitTest :androidApp:assembleDebug
       - name: Relatórios de teste
         if: failure()
         uses: actions/upload-artifact@v4

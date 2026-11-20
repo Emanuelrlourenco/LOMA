@@ -24,4 +24,11 @@ android {
 
 dependencies {
     implementation(project(":shared:ui"))
+    testImplementation(libs.junit)
+    testImplementation(libs.kotlin.test.junit)
+}
+
+// O teste do manifest lê o manifest mesclado da variante debug.
+tasks.withType<Test>().configureEach {
+    dependsOn("processDebugMainManifest")
 }
