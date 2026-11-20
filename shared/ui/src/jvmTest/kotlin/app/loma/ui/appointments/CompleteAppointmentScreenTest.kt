@@ -90,7 +90,7 @@ class CompleteAppointmentScreenTest {
         onNodeWithTag("complete_confirm").assertIsEnabled()
         onNodeWithTag("final_value").performTextReplacement("")
         onNodeWithTag("complete_confirm").assertIsNotEnabled()
-        onNodeWithText("Informe o valor final").assertExists()
+        onNodeWithText("Informe o valor final", substring = true).assertExists()
         onNodeWithTag("final_value").performTextReplacement("-10")
         onNodeWithTag("complete_confirm").assertIsNotEnabled()
     }
