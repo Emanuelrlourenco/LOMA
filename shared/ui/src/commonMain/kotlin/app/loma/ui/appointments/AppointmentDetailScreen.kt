@@ -41,6 +41,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawBehind
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.semantics.Role
@@ -250,7 +251,15 @@ fun AppointmentDetailScreen(id: Long) {
                 val e = a.end.toLocalDateTime(zone)
                 Row(Modifier.padding(top = 20.dp).fillMaxWidth()) {
                     InfoCell("${hhmm(s.hour, s.minute)} – ${hhmm(e.hour, e.minute)}", Modifier.weight(1f), "info_time")
-                    InfoCell(dayLabel(s.date), Modifier.weight(1f).border(1.dp, Color(0xFF3A3994)), "info_date")
+                    InfoCell(
+                        dayLabel(s.date),
+                        Modifier.weight(1f).drawBehind {
+                            val c = Color(0xFF3A3994)
+                            drawLine(c, androidx.compose.ui.geometry.Offset(0f, 0f), androidx.compose.ui.geometry.Offset(0f, size.height), 1.dp.toPx())
+                            drawLine(c, androidx.compose.ui.geometry.Offset(size.width, 0f), androidx.compose.ui.geometry.Offset(size.width, size.height), 1.dp.toPx())
+                        },
+                        "info_date",
+                    )
                     InfoCell((a.finalValue ?: a.expected).formatBrl(showZeroCents = false), Modifier.weight(1f), "info_value")
                 }
                 Text(stringResource(Res.string.appt_services), Modifier.padding(top = 22.dp, bottom = 8.dp), style = type.body.copy(fontWeight = FontWeight.Bold), color = Muted)

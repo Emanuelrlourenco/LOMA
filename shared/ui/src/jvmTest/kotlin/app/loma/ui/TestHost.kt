@@ -11,13 +11,19 @@ import androidx.compose.ui.test.hasText
 import app.loma.ui.shell.LocalNavigator
 import app.loma.ui.shell.Navigator
 import app.loma.ui.theme.LomaTheme
+import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.fillMaxSize
 import kotlinx.coroutines.runBlocking
 
 /** Entrega grafo, pilha e tema a uma tela isolada nos testes. */
 @Composable
 fun TestHost(graph: LomaGraph, navigator: Navigator = Navigator(), content: @Composable () -> Unit) {
     CompositionLocalProvider(LocalLomaGraph provides graph, LocalNavigator provides navigator) {
-        LomaTheme(darkTheme = false) { content() }
+        LomaTheme(darkTheme = false) {
+            androidx.compose.foundation.layout.Box(
+                androidx.compose.ui.Modifier.fillMaxSizeCompat().background(app.loma.ui.theme.LocalLomaColors.current.background),
+            ) { content() }
+        }
     }
 }
 
@@ -32,3 +38,5 @@ fun ComposeUiTest.waitForData(timeoutMillis: Long = 5_000, condition: suspend ()
 fun ComposeUiTest.waitForText(text: String, substring: Boolean = false, timeoutMillis: Long = 5_000) {
     waitUntil(timeoutMillis = timeoutMillis) { onAllNodes(hasText(text, substring = substring)).fetchSemanticsNodes().isNotEmpty() }
 }
+
+private fun androidx.compose.ui.Modifier.fillMaxSizeCompat() = this.fillMaxSize()

@@ -132,7 +132,10 @@ fun HomeScreen() {
     val clients by remember { repo.clients() }.collectAsState(initial = emptyList())
 
     val summary = DaySummary.of(dayAppointments, selected, zone)
-    val cards = dayAppointments.filter { it.status != AppointmentStatus.DESMARCADO && it.start.toLocalDateTime(zone).date == selected }
+    // Abertos primeiro (por horário), depois os concluídos do dia.
+    val cards = dayAppointments
+        .filter { it.status != AppointmentStatus.DESMARCADO && it.start.toLocalDateTime(zone).date == selected }
+        .sortedWith(compareBy({ it.status == AppointmentStatus.CONCLUIDO }, { it.start }))
     val busyDays = monthAppointments.filter { it.status != AppointmentStatus.DESMARCADO }.map { it.start.toLocalDateTime(zone).date.day }.toSet()
     val birthdays = clients.filter { it.birthday?.let { b -> b.day == today.day && b.month == today.month.ordinal + 1 } == true }
     val labels = whenLabels()
@@ -152,7 +155,7 @@ fun HomeScreen() {
                     Spacer(Modifier.weight(1f))
                     val notices = stringResource(Res.string.notices)
                     Box(Modifier.size(44.dp).background(colors.surface, RoundedCornerShape(22.dp)).semantics { contentDescription = notices }, contentAlignment = Alignment.Center) {
-                        Text("🔔", style = type.body.copy(fontSize = 16.sp))
+                        Icon(LomaIcons.Sino, contentDescription = null, tint = colors.textPrimary, modifier = Modifier.size(22.dp))
                         if (unsettled.isNotEmpty() || birthdays.isNotEmpty()) {
                             Box(Modifier.align(Alignment.TopEnd).padding(top = 9.dp, end = 10.dp).size(9.dp).background(LomaPalette.Coral, RoundedCornerShape(5.dp)).border(2.dp, Color.White, RoundedCornerShape(5.dp)))
                         }
@@ -212,14 +215,15 @@ fun HomeScreen() {
             Row(Modifier.fillMaxWidth().padding(start = 20.dp, end = 20.dp, top = 14.dp, bottom = 8.dp), verticalAlignment = Alignment.CenterVertically) {
                 Text(
                     if (selected == today) stringResource(Res.string.cards_today) else stringResource(Res.string.cards_day, "${twoDigits(selected.day)}/${twoDigits(selected.month.ordinal + 1)}"),
-                    Modifier.weight(1f).testTag("cards_title"),
+                    Modifier.testTag("cards_title"),
                     style = type.body.copy(fontSize = 19.sp, fontWeight = FontWeight.ExtraBold),
+                    maxLines = 1,
                     color = colors.textPrimary,
                 )
                 Text(
                     stringResource(Res.string.day_summary, summary.expected.formatBrl(showZeroCents = false), summary.received.formatBrl(showZeroCents = false)),
-                    Modifier.testTag("day_summary"),
-                    style = type.body.copy(fontSize = 13.sp, fontWeight = FontWeight.SemiBold),
+                    Modifier.weight(1f).padding(start = 10.dp).testTag("day_summary"),
+                    style = type.body.copy(fontSize = 13.sp, fontWeight = FontWeight.SemiBold, textAlign = TextAlign.End),
                     color = colors.textSecondary,
                 )
             }
