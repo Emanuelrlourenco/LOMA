@@ -40,7 +40,7 @@ class LomaAppTest {
 
     @Test
     fun abreNoInicio() = runComposeUiTest {
-        setContent { LomaApp() }
+        setContent { LomaApp(showIntro = false) }
 
         onNodeWithTag("tab_inicio").assertIsSelected()
         onNodeWithTag("screen_title").assertTextEquals("Início")
@@ -48,7 +48,7 @@ class LomaAppTest {
 
     @Test
     fun tocarEmFinanceiroMostraAAbaFinanceiro() = runComposeUiTest {
-        setContent { LomaApp() }
+        setContent { LomaApp(showIntro = false) }
 
         onNodeWithTag("tab_financeiro").performClick()
 
@@ -64,7 +64,7 @@ class LomaAppTest {
         var visivel by mutableStateOf(true)
         setContent {
             CompositionLocalProvider(LocalSaveableStateRegistry provides registry) {
-                if (visivel) LomaApp()
+                if (visivel) LomaApp(showIntro = false)
             }
         }
 
@@ -84,7 +84,7 @@ class LomaAppTest {
     fun rotulosCabemComFonteEm200PorCento() = runComposeUiTest {
         setContent {
             val base = LocalDensity.current
-            CompositionLocalProvider(LocalDensity provides Density(base.density, fontScale = 2f)) { LomaApp() }
+            CompositionLocalProvider(LocalDensity provides Density(base.density, fontScale = 2f)) { LomaApp(showIntro = false) }
         }
 
         listOf("tab_inicio" to "Início", "tab_agenda" to "Agenda", "tab_clientes" to "Clientes", "tab_financeiro" to "Financeiro")
