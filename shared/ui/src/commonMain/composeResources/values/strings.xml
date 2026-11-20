@@ -213,4 +213,37 @@
         <item>SEX</item>
         <item>SÁB</item>
     </string-array>
+    <!-- Bloqueio (PIN e digital) -->
+    <string name="lock_welcome">Bem-vinda de volta</string>
+    <string name="lock_hint">Digite seu PIN para abrir o LOMA</string>
+    <string name="lock_use_biometric">Usar digital</string>
+    <string name="lock_use_pin">Usar PIN</string>
+    <string name="lock_forgot">Esqueci o PIN</string>
+    <string name="lock_wrong">PIN incorreto. Restam %1$d tentativas.</string>
+    <string name="lock_wrong_one">PIN incorreto. Resta 1 tentativa.</string>
+    <string name="lock_wait">Muitas tentativas. Tente de novo em %1$d s.</string>
+    <string name="lock_no_device_lock">Este celular não tem bloqueio de tela, então não dá para criar outro PIN por ele. Ative o bloqueio de tela nos ajustes do celular e toque aqui de novo.</string>
+    <string name="biometric_prompt_title">Abrir o LOMA</string>
+    <string name="forgot_prompt_title">Confirme que é você</string>
+    <string name="forgot_prompt_subtitle">Use o bloqueio do celular para criar um PIN novo</string>
+    <string name="pin_setup_new">Crie um PIN de 4 dígitos</string>
+    <string name="pin_setup_confirm">Digite o PIN de novo</string>
+    <string name="pin_setup_mismatch">Os PINs não são iguais. Tente de novo.</string>
+    <string name="pin_dots_label">%1$d de %2$d dígitos digitados</string>
+    <string name="pin_delete">Apagar</string>
+    <!-- Ajustes › Segurança -->
+    <string name="security_title">Segurança</string>
+    <string name="security_menu_hint">PIN, digital e bloqueio do app</string>
+    <string name="security_pin">Bloquear o app com PIN</string>
+    <string name="security_pin_hint">Pede o PIN de 4 dígitos ao abrir o LOMA</string>
+    <string name="security_biometric">Usar digital</string>
+    <string name="security_timeout">Bloquear depois de</string>
+    <string name="security_timeout_0">Na hora</string>
+    <string name="security_timeout_60">1 minuto</string>
+    <string name="security_timeout_300">5 minutos</string>
+    <string name="security_change_pin">Trocar PIN</string>
+    <string name="security_change_pin_hint">Pede o PIN atual antes</string>
+    <string name="pin_verify_title">Digite o PIN atual</string>
+    <string name="security_warning_ok">Se esquecer o PIN, você poderá criar outro usando o bloqueio do celular.</string>
+    <string name="security_warning_unsafe">Este celular não tem bloqueio de tela. Sem ele, quem esquecer o PIN do LOMA terá de apagar os dados do app. Ative o bloqueio de tela nos ajustes do celular.</string>
 </resources>

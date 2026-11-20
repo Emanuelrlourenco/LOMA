@@ -31,6 +31,8 @@
     <array>
         <string>whatsapp</string>
     </array>
+    <key>NSFaceIDUsageDescription</key>
+    <string>O LOMA usa o Face ID para abrir o app sem digitar o PIN.</string>
     <key>LSRequiresIPhoneOS</key>
     <true/>
     <key>CADisableMinimumFrameDurationOnPhone</key>

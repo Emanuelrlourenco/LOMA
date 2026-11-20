@@ -3,6 +3,10 @@
 
 package app.loma.ui.shell
 
+import app.loma.ui.settings.PinChangeScreen
+import app.loma.ui.settings.SecurityScreen
+import androidx.compose.ui.semantics.clearAndSetSemantics
+import app.loma.ui.lock.LockScreen
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
@@ -52,6 +56,7 @@ fun LomaApp(
     showIntro: Boolean = true,
     soundEnabled: Boolean = true,
     onDarkThemeChange: (Boolean) -> Unit = {},
+    onExit: () -> Unit = {},
 ) {
     val navigator = rememberNavigator()
     val scope = rememberCoroutineScope()
@@ -62,26 +67,30 @@ fun LomaApp(
         scope.launch { graph.repository.putSetting(SettingKeys.THEME, if (dark) THEME_LIGHT else THEME_DARK) }
     }
     CompositionLocalProvider(LocalLomaGraph provides graph, LocalNavigator provides navigator, LocalThemeToggle provides toggle) {
-        LomaRoot(navigator, dark, showIntro, soundEnabled)
+        LomaRoot(navigator, dark, showIntro, soundEnabled, onExit)
     }
 }
 
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
-private fun LomaRoot(navigator: Navigator, darkTheme: Boolean, showIntro: Boolean, soundEnabled: Boolean) {
+private fun LomaRoot(navigator: Navigator, darkTheme: Boolean, showIntro: Boolean, soundEnabled: Boolean, onExit: () -> Unit) {
+    val lockState by LocalLomaGraph.current.lock.state.collectAsState()
+    val locked = lockState.locked
     LomaTheme(darkTheme = darkTheme) {
         var tabName by rememberSaveable { mutableStateOfName(LomaTab.Inicio) }
         // A abertura toca só na abertura do zero: girar a tela ou recriar a Activity não repete.
         var introDone by rememberSaveable { androidx.compose.runtime.mutableStateOf(!showIntro) }
         val tab = LomaTab.valueOf(tabName)
         // Voltar fecha primeiro a tela empilhada; sem telas, vale a regra das abas.
-        BackHandler(enabled = navigator.stack.isNotEmpty() || tab != LomaTab.Inicio) {
+        BackHandler(enabled = !locked && (navigator.stack.isNotEmpty() || tab != LomaTab.Inicio)) {
             if (!navigator.pop()) tab.back()?.let { tabName = it.name }
         }
         val top = navigator.stack.lastOrNull()
         // A ficha da cliente aparece com a barra inferior (aba Clientes), como na tela aprovada.
         val tabOfRoute = if (top is Route.ClientDetail) LomaTab.Clientes else null
-        Box(Modifier.fillMaxSize().background(LocalLomaColors.current.background)) {
+        // Bloqueado: o conteúdo continua montado (nada do que estava sendo digitado se perde),
+        // mas some da acessibilidade e fica coberto pela tela de PIN.
+        Box(Modifier.fillMaxSize().background(LocalLomaColors.current.background).then(if (locked) Modifier.clearAndSetSemantics {} else Modifier)) {
             if (top == null || tabOfRoute != null) {
                 Column(Modifier.fillMaxSize()) {
                     Box(Modifier.fillMaxWidth().weight(1f)) {
@@ -98,6 +107,11 @@ private fun LomaRoot(navigator: Navigator, darkTheme: Boolean, showIntro: Boolea
             } else {
                 RouteContent(top)
             }
+        }
+        if (locked) {
+            LockScreen(autoPrompt = introDone)
+            // Voltar na tela de bloqueio sai do app (Android).
+            BackHandler(onBack = onExit)
         }
         if (!introDone) {
             LomaIntro(
@@ -129,6 +143,8 @@ private fun RouteContent(route: Route) {
         Route.Services -> ServicesScreen()
         is Route.ServiceEdit -> key(route) { ServiceEditScreen(route.id) }
         Route.MessageTemplate -> MessageTemplateScreen()
+        Route.Security -> SecurityScreen()
+        is Route.PinChange -> key(route) { PinChangeScreen(route.mode) }
         is Route.ClientDetail -> key(route) { ClientDetailScreen(route.id) }
         is Route.ClientEdit -> key(route) { ClientEditScreen(route.id) }
         is Route.CompleteAppointment -> key(route) { CompleteAppointmentScreen(route.id) }

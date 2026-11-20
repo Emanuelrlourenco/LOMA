@@ -15,6 +15,8 @@ coroutines = "1.11.0"
 kotlinx-datetime = "0.8.0"
 activity-compose = "1.13.0"
 core-splashscreen = "1.2.0"
+# androidx.biometric 1.4.0-rc01 (18/11/2026): a estável 1.1.0 é de 2021 e tem defeitos corrigidos depois.
+biometric = "1.4.0-rc01"
 roborazzi = "1.63.0"
 android-compileSdk = "37"
 android-targetSdk = "37"
@@ -28,6 +30,7 @@ kotlinx-datetime = { module = "org.jetbrains.kotlinx:kotlinx-datetime", version.
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
 kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
+androidx-biometric = { module = "androidx.biometric:biometric", version.ref = "biometric" }
 androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "core-splashscreen" }
 
 androidx-room3-runtime = { module = "androidx.room3:room3-runtime", version.ref = "room3" }

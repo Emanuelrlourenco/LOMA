@@ -38,6 +38,8 @@ class SettingsScreenTest {
         onNodeWithTag("profile_photo_remove").performScrollTo().performClick()
 
         waitForData { g.repository.setting(SettingKeys.PROFILE_PHOTO).first().isNullOrEmpty() }
+        // O arquivo é apagado logo depois de gravar o ajuste, na mesma corrotina.
+        waitUntil(timeoutMillis = 5_000) { g.photos.deleted.isNotEmpty() }
         assertEquals(listOf("perfil.jpg"), g.photos.deleted)
         waitUntil(timeoutMillis = 5_000) { onAllNodes(hasTestTag("avatar_photo")).fetchSemanticsNodes().isEmpty() }
     }

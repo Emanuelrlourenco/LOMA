@@ -36,6 +36,10 @@ internal object LomaIcons {
         "M8 12a4 4 0 1 0 8 0a4 4 0 1 0-8 0z",
         "M12 2.5v2M12 19.5v2M2.5 12h2M19.5 12h2M5.3 5.3l1.4 1.4M17.3 17.3l1.4 1.4M5.3 18.7l1.4-1.4M17.3 6.7l1.4-1.4")
     val Lua = icon("lua", 1.9f, StrokeCap.Round, StrokeJoin.Round, "M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z")
+    // Tela de bloqueio (T-Bloqueio).
+    val Apagar = icon("apagar", 2f, StrokeCap.Round, StrokeJoin.Round, "M9 5h11v14H9l-6-7z", "M12.5 9.5l5 5M17.5 9.5l-5 5")
+    val Digital = icon("digital", 1.8f, StrokeCap.Round, StrokeJoin.Miter,
+        "M12 4a7 7 0 0 0-7 7v3", "M19 11a7 7 0 0 0-3-5.7", "M9 20c1-2 1-4 1-6a2 2 0 0 1 4 0c0 3-.5 5-1.5 7", "M15.8 19c.4-1.4.5-3 .5-5")
     val Seta = icon("seta", 2f, StrokeCap.Round, StrokeJoin.Round, "M9 6l6 6-6 6")
 
     private fun icon(name: String, width: Float, cap: StrokeCap, join: StrokeJoin, vararg paths: String): ImageVector {
