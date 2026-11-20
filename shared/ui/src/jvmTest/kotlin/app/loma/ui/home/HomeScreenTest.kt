@@ -19,6 +19,7 @@ import app.loma.ui.SaoPaulo
 import app.loma.ui.TestGraph
 import app.loma.ui.TestHost
 import app.loma.ui.saoPaulo
+import app.loma.ui.testPng
 import java.util.Locale
 import kotlin.test.BeforeTest
 import kotlin.test.Test
@@ -129,5 +130,14 @@ class HomeScreenTest {
 
         waitUntil(timeoutMillis = 5_000) { runCatching { onNodeWithTag("card_$id").assertDoesNotExist() }.isSuccess }
         onNodeWithTag("day_summary").assertTextContains("previsto R$ 0 · recebido R$ 0")
+    }
+
+    @Test
+    fun fotoDoPerfilNoAvatar() = runComposeUiTest {
+        val g = TestGraph()
+        g.photos.files["perfil.jpg"] = testPng()
+        runBlocking { g.repository.putSetting(SettingKeys.PROFILE_PHOTO, "perfil.jpg") }
+        setContent { TestHost(g.graph) { HomeScreen() } }
+        esperaTag("avatar_photo")
     }
 }

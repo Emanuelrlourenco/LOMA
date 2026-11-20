@@ -57,3 +57,14 @@ class TestGraph(now: Instant = saoPaulo(20, 10)) {
     val photos = FakePhotos()
     val graph = LomaGraph(repository, messaging, photos, clock) { SaoPaulo }
 }
+
+/** PNG de verdade (degradê menta → lilás) para testar e capturar fotos. */
+fun testPng(size: Int = 96): ByteArray {
+    val img = java.awt.image.BufferedImage(size, size, java.awt.image.BufferedImage.TYPE_INT_RGB)
+    for (x in 0 until size) for (y in 0 until size) {
+        val t = (x + y).toFloat() / (2 * size)
+        val r = (0x5E + (0xB6 - 0x5E) * t).toInt(); val gr = (0xD6 + (0x9C - 0xD6) * t).toInt(); val b = (0xB4 + (0xF2 - 0xB4) * t).toInt()
+        img.setRGB(x, y, (r shl 16) or (gr shl 8) or b)
+    }
+    return java.io.ByteArrayOutputStream().also { javax.imageio.ImageIO.write(img, "png", it) }.toByteArray()
+}

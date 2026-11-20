@@ -4,6 +4,12 @@
 package app.loma.ui.shell
 
 import app.loma.ui.TestGraph
+import app.loma.ui.waitForData
+import app.loma.data.SettingKeys
+import androidx.compose.ui.test.ComposeUiTest
+import androidx.compose.ui.test.hasContentDescription
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.runBlocking
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -93,5 +99,33 @@ class LomaAppTest {
                 onNodeWithTag(tag).assertIsDisplayed().assertHeightIsAtLeast(48.dp)
                 onNode(hasText(rotulo) and hasAnyAncestor(hasTestTag(tag)), useUnmergedTree = true).assertIsDisplayed()
             }
+    }
+
+    private fun ComposeUiTest.esperaBotaoDeTema(descricao: String) = waitUntil(timeoutMillis = 5_000) {
+        onAllNodes(hasTestTag("theme_toggle") and hasContentDescription(descricao)).fetchSemanticsNodes().isNotEmpty()
+    }
+
+    @Test
+    fun temaSalvoVenceOSistema() = runComposeUiTest {
+        val g = TestGraph()
+        runBlocking { g.repository.putSetting(SettingKeys.THEME, "claro") }
+        setContent { LomaApp(graph = g.graph, showIntro = false) }
+        esperaBotaoDeTema("Mudar para o tema azul")
+    }
+
+    @Test
+    fun botaoDeTemaAlternaESalva() = runComposeUiTest {
+        val g = TestGraph()
+        runBlocking { g.repository.putSetting(SettingKeys.THEME, "escuro") }
+        setContent { LomaApp(graph = g.graph, showIntro = false) }
+        esperaBotaoDeTema("Mudar para o tema claro")
+
+        onNodeWithTag("theme_toggle").performClick()
+        waitForData { g.repository.setting(SettingKeys.THEME).first() == "claro" }
+        esperaBotaoDeTema("Mudar para o tema azul")
+
+        onNodeWithTag("theme_toggle").performClick()
+        waitForData { g.repository.setting(SettingKeys.THEME).first() == "escuro" }
+        esperaBotaoDeTema("Mudar para o tema claro")
     }
 }

@@ -22,6 +22,8 @@ import app.loma.ui.appointments.AppointmentDetailScreen
 import app.loma.ui.appointments.CompleteAppointmentScreen
 import app.loma.ui.clients.ClientDetailScreen
 import app.loma.ui.saoPaulo
+import app.loma.ui.testPng
+import app.loma.ui.settings.SettingsScreen
 import app.loma.ui.shell.LomaApp
 import io.github.takahirom.roborazzi.captureRoboImage
 import java.util.Locale
@@ -92,4 +94,15 @@ class SalonScreenshotTest {
 
     @Test
     fun concluirClaro() = shoot("concluir-claro", "complete_confirm") { TestHost(it.g.graph) { CompleteAppointmentScreen(it.atendimento) } }
+
+    private fun Exemplo.comFoto() = also {
+        g.photos.files["perfil.jpg"] = testPng()
+        runBlocking { g.repository.putSetting(SettingKeys.PROFILE_PHOTO, "perfil.jpg") }
+    }
+
+    @Test
+    fun inicioComFoto() = shoot("inicio-foto", "avatar_photo") { LomaApp(it.comFoto().g.graph, darkTheme = true, showIntro = false) }
+
+    @Test
+    fun ajustesPerfil() = shoot("ajustes-perfil", "avatar_photo") { TestHost(it.comFoto().g.graph) { SettingsScreen() } }
 }
