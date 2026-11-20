@@ -33,6 +33,14 @@ jobs:
         with:
           name: relatorios-de-teste
           path: "**/build/reports/tests/"
+      - name: Capturas de tela (Roborazzi)
+        run: ./gradlew :shared:ui:recordRoborazziJvm
+      - name: Capturas no log (para revisão)
+        run: |
+          for f in shared/ui/screenshots/*.png; do
+            [ -f "$f" ] || continue
+            echo "::group::PNG $f"; echo "===PNG-BEGIN $f==="; base64 -w0 "$f"; echo; echo "===PNG-END==="; echo "::endgroup::"
+          done
       - name: Schema do banco (para versionar)
         if: always()
         run: |
