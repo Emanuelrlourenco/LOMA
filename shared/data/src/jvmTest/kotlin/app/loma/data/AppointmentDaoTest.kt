@@ -47,7 +47,7 @@ class AppointmentDaoTest {
         val c = clients.insert(cliente("Maria"))
         val id = appointments.insertWithServices(atendimento(c, agora, "AGENDADO"), listOf(servico("Escova", 1), servico("Coloração", 0)))
         val lido = appointments.observeById(id).first()!!
-        assertEquals(listOf("Coloração", "Escova"), lido.orderedServices.map { it.name })
+        assertEquals(listOf("Coloração", "Escova"), lido.orderedServices().map { it.name })
     }
 
     @Test

@@ -32,8 +32,8 @@ data class AppointmentServiceEntity(
 /** Atendimento com os seus serviços. */
 data class AppointmentWithServices(
     @Embedded val appointment: AppointmentEntity,
-    @Relation(parentColumn = "id", entityColumn = "appointmentId")
+    @Relation(parentColumns = ["id"], entityColumns = ["appointmentId"])
     val services: List<AppointmentServiceEntity>,
 ) {
-    val orderedServices: List<AppointmentServiceEntity> get() = services.sortedBy { it.position }
+    fun orderedServices(): List<AppointmentServiceEntity> = services.sortedBy { it.position }
 }
