@@ -3,6 +3,8 @@
 
 package app.loma.ui.shell
 
+import app.loma.ui.settings.PinChangeScreen
+import app.loma.ui.settings.SecurityScreen
 import androidx.compose.ui.semantics.clearAndSetSemantics
 import app.loma.ui.lock.LockScreen
 import androidx.compose.foundation.background
@@ -141,6 +143,8 @@ private fun RouteContent(route: Route) {
         Route.Services -> ServicesScreen()
         is Route.ServiceEdit -> key(route) { ServiceEditScreen(route.id) }
         Route.MessageTemplate -> MessageTemplateScreen()
+        Route.Security -> SecurityScreen()
+        is Route.PinChange -> key(route) { PinChangeScreen(route.mode) }
         is Route.ClientDetail -> key(route) { ClientDetailScreen(route.id) }
         is Route.ClientEdit -> key(route) { ClientEditScreen(route.id) }
         is Route.CompleteAppointment -> key(route) { CompleteAppointmentScreen(route.id) }

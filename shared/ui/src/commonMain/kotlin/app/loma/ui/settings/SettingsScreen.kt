@@ -3,6 +3,8 @@
 
 package app.loma.ui.settings
 
+import app.loma.ui.generated.resources.security_menu_hint
+import app.loma.ui.generated.resources.security_title
 import app.loma.ui.generated.resources.client_photo_remove
 import app.loma.ui.generated.resources.client_photo_pick
 import app.loma.ui.components.PillKind
@@ -104,6 +106,7 @@ fun SettingsScreen() {
             LomaCard {
                 MenuRow(stringResource(Res.string.settings_services), stringResource(Res.string.settings_services_hint), { nav.push(Route.Services) }, "menu_services")
                 MenuRow(stringResource(Res.string.settings_message), stringResource(Res.string.settings_message_hint), { nav.push(Route.MessageTemplate) }, "menu_message")
+                MenuRow(stringResource(Res.string.security_title), stringResource(Res.string.security_menu_hint), { nav.push(Route.Security) }, "menu_security")
             }
             Spacer(Modifier.height(24.dp))
         }

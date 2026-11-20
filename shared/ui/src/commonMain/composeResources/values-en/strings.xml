@@ -231,4 +231,19 @@
     <string name="pin_setup_mismatch">The PINs do not match. Try again.</string>
     <string name="pin_dots_label">%1$d of %2$d digits entered</string>
     <string name="pin_delete">Delete</string>
+    <!-- Ajustes › Segurança -->
+    <string name="security_title">Security</string>
+    <string name="security_menu_hint">PIN, fingerprint and app lock</string>
+    <string name="security_pin">Lock the app with a PIN</string>
+    <string name="security_pin_hint">Asks for the 4-digit PIN when LOMA opens</string>
+    <string name="security_biometric">Use fingerprint</string>
+    <string name="security_timeout">Lock after</string>
+    <string name="security_timeout_0">Immediately</string>
+    <string name="security_timeout_60">1 minute</string>
+    <string name="security_timeout_300">5 minutes</string>
+    <string name="security_change_pin">Change PIN</string>
+    <string name="security_change_pin_hint">Asks for the current PIN first</string>
+    <string name="pin_verify_title">Enter your current PIN</string>
+    <string name="security_warning_ok">If you forget the PIN, you can create another one using the phone lock.</string>
+    <string name="security_warning_unsafe">This phone has no screen lock. Without it, forgetting the LOMA PIN means erasing the app data. Turn on the screen lock in the phone settings.</string>
 </resources>

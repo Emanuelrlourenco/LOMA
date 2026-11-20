@@ -14,6 +14,9 @@ sealed interface Route {
     data object Services : Route
     data class ServiceEdit(val id: Long?) : Route
     data object MessageTemplate : Route
+    data object Security : Route
+    /** "new", "change" ou "disable". */
+    data class PinChange(val mode: String) : Route
 
     fun encode(): String = when (this) {
         is ClientDetail -> "ClientDetail:$id"
@@ -25,6 +28,8 @@ sealed interface Route {
         Services -> "Services:"
         is ServiceEdit -> "ServiceEdit:${id.orDash()}"
         MessageTemplate -> "MessageTemplate:"
+        Security -> "Security:"
+        is PinChange -> "PinChange:-|$mode"
     }
 
     companion object {
@@ -43,6 +48,8 @@ sealed interface Route {
                 "Services" -> Services
                 "ServiceEdit" -> ServiceEdit(args[0])
                 "MessageTemplate" -> MessageTemplate
+                "Security" -> Security
+                "PinChange" -> PinChange(extra ?: "new")
                 else -> error("rota desconhecida: $text")
             }
         }
