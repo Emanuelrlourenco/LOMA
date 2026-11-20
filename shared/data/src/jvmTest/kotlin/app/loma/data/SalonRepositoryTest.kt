@@ -66,7 +66,9 @@ class SalonRepositoryTest {
         val ontem = AppointmentRules.book(c, listOf(servico("Escova", 60, 70)), at(19, 15), sp)
         val id = repo.save(AppointmentRules.complete(ontem, Money.ofReais(70), at(20, 9), ""))
         assertEquals(listOf(id), repo.appointmentsOn(LocalDate(2026, 11, 20), sp).first().map { it.id })
-        assertEquals(emptyList(), repo.appointmentsOn(LocalDate(2026, 11, 19), sp).first().map { it.id })
+        // Começou ontem: continua na lista de ontem também.
+        assertEquals(listOf(id), repo.appointmentsOn(LocalDate(2026, 11, 19), sp).first().map { it.id })
+        assertEquals(emptyList(), repo.appointmentsOn(LocalDate(2026, 11, 18), sp).first().map { it.id })
     }
 
     @Test
