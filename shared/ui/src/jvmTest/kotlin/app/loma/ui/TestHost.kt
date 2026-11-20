@@ -24,11 +24,11 @@ fun TestHost(graph: LomaGraph, navigator: Navigator = Navigator(), content: @Com
 /** Espera o banco (que grava em outra thread) chegar ao estado esperado. */
 @OptIn(ExperimentalTestApi::class)
 fun ComposeUiTest.waitForData(timeoutMillis: Long = 5_000, condition: suspend () -> Boolean) {
-    waitUntil(timeoutMillis) { runBlocking { condition() } }
+    waitUntil(timeoutMillis = timeoutMillis) { runBlocking { condition() } }
 }
 
 /** Espera aparecer um texto na tela (os fluxos do Room chegam em outra thread). */
 @OptIn(ExperimentalTestApi::class)
 fun ComposeUiTest.waitForText(text: String, substring: Boolean = false, timeoutMillis: Long = 5_000) {
-    waitUntil(timeoutMillis) { onAllNodes(hasText(text, substring = substring)).fetchSemanticsNodes().isNotEmpty() }
+    waitUntil(timeoutMillis = timeoutMillis) { onAllNodes(hasText(text, substring = substring)).fetchSemanticsNodes().isNotEmpty() }
 }

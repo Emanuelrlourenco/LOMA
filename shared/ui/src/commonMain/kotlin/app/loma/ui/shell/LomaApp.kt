@@ -19,7 +19,12 @@ import androidx.compose.ui.backhandler.BackHandler
 import androidx.compose.runtime.CompositionLocalProvider
 import app.loma.ui.LocalLomaGraph
 import app.loma.ui.LomaGraph
+import androidx.compose.runtime.key
 import app.loma.ui.intro.LomaIntro
+import app.loma.ui.settings.MessageTemplateScreen
+import app.loma.ui.settings.ServiceEditScreen
+import app.loma.ui.settings.ServicesScreen
+import app.loma.ui.settings.SettingsScreen
 import app.loma.ui.intro.rememberReducedMotion
 import app.loma.ui.theme.LocalLomaColors
 import app.loma.ui.theme.LomaTheme
@@ -86,5 +91,11 @@ private fun TabContent(tab: LomaTab) {
 /** Tela do topo da pilha. */
 @Composable
 private fun RouteContent(route: Route) {
-    PlaceholderScreen(route.encode().substringBefore(':'))
+    when (route) {
+        Route.Settings -> SettingsScreen()
+        Route.Services -> ServicesScreen()
+        is Route.ServiceEdit -> key(route) { ServiceEditScreen(route.id) }
+        Route.MessageTemplate -> MessageTemplateScreen()
+        else -> PlaceholderScreen(route.encode().substringBefore(':'))
+    }
 }
