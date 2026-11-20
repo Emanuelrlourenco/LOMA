@@ -134,4 +134,31 @@
         <item>Fri</item>
         <item>Sat</item>
     </string-array>
+    <string name="status_scheduled">Booked · not confirmed</string>
+    <string name="status_confirmed">Confirmed</string>
+    <string name="status_done">Completed · %1$s</string>
+    <string name="status_unscheduled">Cancelled · %1$s</string>
+    <string name="confirm_whatsapp">Confirm on WhatsApp</string>
+    <string name="confirm_sms">Confirm by SMS</string>
+    <string name="action_confirmed">Confirmed</string>
+    <string name="action_complete">Complete</string>
+    <string name="action_unschedule">Cancel</string>
+    <string name="action_reopen">Reopen</string>
+    <string name="action_reschedule">Reschedule</string>
+    <string name="reopen_confirm">Reopen? The amount leaves the earnings.</string>
+    <string name="delete_appt_confirm">Delete this appointment? The amount leaves the earnings.</string>
+    <string name="client_confirmed_q">Did the client confirm?</string>
+    <string name="not_yet">Not yet</string>
+    <string name="open_with">Open with…</string>
+    <string name="app_whatsapp">WhatsApp</string>
+    <string name="app_business">WhatsApp Business</string>
+    <string name="app_sms">SMS</string>
+    <string name="no_phone">Add the client’s WhatsApp number</string>
+    <string name="undo">Undo</string>
+    <string name="appt_updated">Appointment updated</string>
+    <string name="unschedule_title">Why was it cancelled?</string>
+    <string name="reason_title_cancelou">Client cancelled</string>
+    <string name="reason_title_nao_compareceu">No-show</string>
+    <string name="reason_title_remarcou">Rescheduled</string>
+    <string name="appt_menu">More options</string>
 </resources>

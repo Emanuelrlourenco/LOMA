@@ -134,4 +134,31 @@
         <item>sex</item>
         <item>sáb</item>
     </string-array>
+    <string name="status_scheduled">Agendado · não confirmada</string>
+    <string name="status_confirmed">Confirmado</string>
+    <string name="status_done">Concluído · %1$s</string>
+    <string name="status_unscheduled">Desmarcado · %1$s</string>
+    <string name="confirm_whatsapp">Confirmar pelo WhatsApp</string>
+    <string name="confirm_sms">Confirmar por SMS</string>
+    <string name="action_confirmed">Confirmado</string>
+    <string name="action_complete">Concluir</string>
+    <string name="action_unschedule">Desmarcar</string>
+    <string name="action_reopen">Reabrir</string>
+    <string name="action_reschedule">Remarcar</string>
+    <string name="reopen_confirm">Reabrir? O valor sai dos ganhos realizados.</string>
+    <string name="delete_appt_confirm">Apagar este atendimento? O valor sai dos ganhos realizados.</string>
+    <string name="client_confirmed_q">A cliente confirmou?</string>
+    <string name="not_yet">Ainda não</string>
+    <string name="open_with">Abrir com…</string>
+    <string name="app_whatsapp">WhatsApp</string>
+    <string name="app_business">WhatsApp Business</string>
+    <string name="app_sms">SMS</string>
+    <string name="no_phone">Cadastre o WhatsApp da cliente</string>
+    <string name="undo">Desfazer</string>
+    <string name="appt_updated">Atendimento atualizado</string>
+    <string name="unschedule_title">Por que desmarcou?</string>
+    <string name="reason_title_cancelou">Cancelou</string>
+    <string name="reason_title_nao_compareceu">Não compareceu</string>
+    <string name="reason_title_remarcou">Remarcou</string>
+    <string name="appt_menu">Mais opções</string>
 </resources>

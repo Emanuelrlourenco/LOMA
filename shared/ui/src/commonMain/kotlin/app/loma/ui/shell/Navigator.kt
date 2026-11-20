@@ -36,6 +36,9 @@ class Navigator(initial: List<Route> = emptyList()) {
     /** Cliente recém-cadastrada a partir do agendamento (o agendamento a escolhe ao voltar). */
     var clientResult: Long? by mutableStateOf(null)
 
+    /** Versão anterior de um atendimento, para o "Desfazer" na tela que aparece em seguida. */
+    var pendingUndo: app.loma.salon.Appointment? by mutableStateOf(null)
+
     fun replaceTop(r: Route) {
         if (entries.isNotEmpty()) entries.removeAt(entries.lastIndex)
         entries.add(r)
