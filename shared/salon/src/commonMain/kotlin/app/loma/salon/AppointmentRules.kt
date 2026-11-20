@@ -17,7 +17,8 @@ import kotlinx.datetime.toLocalDateTime
 object AppointmentRules {
 
     fun book(clientId: Long, services: List<Service>, start: Instant, zone: TimeZone): Appointment {
-        val booked = services.map { BookedService(it.id, it.name, it.durationMinutes, it.price) }
+        // Serviço ainda não salvo (id 0) não tem ligação com a lista de serviços.
+        val booked = services.map { BookedService(it.id.takeIf { id -> id != 0L }, it.name, it.durationMinutes, it.price) }
         return Appointment(
             clientId = clientId,
             start = start,

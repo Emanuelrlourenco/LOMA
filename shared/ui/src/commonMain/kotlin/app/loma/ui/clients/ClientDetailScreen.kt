@@ -191,7 +191,7 @@ fun ClientDetailScreen(id: Long) {
             }
             if (c.allergies.isNotBlank()) {
                 Row(
-                    Modifier.padding(start = 16.dp, end = 16.dp, top = 10.dp).fillMaxWidth().testTag("allergy_band")
+                    Modifier.padding(start = 16.dp, end = 16.dp, top = 10.dp).fillMaxWidth().testTag("allergy_band").semantics(mergeDescendants = true) {}
                         .background(LomaPalette.AlertSoft, RoundedCornerShape(18.dp)).padding(horizontal = 14.dp, vertical = 11.dp),
                     verticalAlignment = Alignment.CenterVertically,
                 ) {
