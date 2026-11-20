@@ -161,4 +161,14 @@
     <string name="reason_title_nao_compareceu">Não compareceu</string>
     <string name="reason_title_remarcou">Remarcou</string>
     <string name="appt_menu">Mais opções</string>
+    <string name="complete_title">Concluir atendimento</string>
+    <string name="complete_expected">Valor esperado</string>
+    <string name="complete_final">Valor final</string>
+    <string name="complete_help">Ajuste se teve serviço extra ou desconto.</string>
+    <string name="complete_diff">%1$s em relação ao esperado</string>
+    <string name="complete_paid_date">Data do pagamento</string>
+    <string name="complete_note">Anotação do atendimento</string>
+    <string name="complete_note_hint">(vai para a ficha)</string>
+    <string name="complete_confirm">Concluir e lançar no caixa</string>
+    <string name="complete_value_required">Informe o valor final</string>
 </resources>

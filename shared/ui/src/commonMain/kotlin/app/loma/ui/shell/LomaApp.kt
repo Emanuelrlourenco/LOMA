@@ -21,6 +21,7 @@ import app.loma.ui.LocalLomaGraph
 import app.loma.ui.LomaGraph
 import androidx.compose.runtime.key
 import app.loma.ui.appointments.AppointmentDetailScreen
+import app.loma.ui.appointments.CompleteAppointmentScreen
 import app.loma.ui.appointments.AppointmentEditScreen
 import app.loma.ui.clients.ClientDetailScreen
 import app.loma.ui.clients.ClientEditScreen
@@ -114,6 +115,7 @@ private fun RouteContent(route: Route) {
         Route.MessageTemplate -> MessageTemplateScreen()
         is Route.ClientDetail -> key(route) { ClientDetailScreen(route.id) }
         is Route.ClientEdit -> key(route) { ClientEditScreen(route.id) }
+        is Route.CompleteAppointment -> key(route) { CompleteAppointmentScreen(route.id) }
         is Route.AppointmentDetail -> key(route) { AppointmentDetailScreen(route.id) }
         is Route.AppointmentEdit -> key(route) { AppointmentEditScreen(route.id, route.clientId, route.rescheduleOf, route.day) }
         else -> PlaceholderScreen(route.encode().substringBefore(':'))

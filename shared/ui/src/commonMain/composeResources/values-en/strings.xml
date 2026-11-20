@@ -161,4 +161,14 @@
     <string name="reason_title_nao_compareceu">No-show</string>
     <string name="reason_title_remarcou">Rescheduled</string>
     <string name="appt_menu">More options</string>
+    <string name="complete_title">Complete appointment</string>
+    <string name="complete_expected">Expected price</string>
+    <string name="complete_final">Final price</string>
+    <string name="complete_help">Adjust for extra services or discounts.</string>
+    <string name="complete_diff">%1$s compared with expected</string>
+    <string name="complete_paid_date">Payment date</string>
+    <string name="complete_note">Appointment note</string>
+    <string name="complete_note_hint">(goes to the client record)</string>
+    <string name="complete_confirm">Complete and record payment</string>
+    <string name="complete_value_required">Enter the final price</string>
 </resources>
