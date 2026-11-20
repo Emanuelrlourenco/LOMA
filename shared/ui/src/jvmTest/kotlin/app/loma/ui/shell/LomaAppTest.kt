@@ -4,6 +4,11 @@
 package app.loma.ui.shell
 
 import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.LocalSaveableStateRegistry
+import androidx.compose.runtime.saveable.SaveableStateRegistry
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.assertHeightIsAtLeast
@@ -14,7 +19,6 @@ import androidx.compose.ui.test.assertTextEquals
 import androidx.compose.ui.test.hasAnyAncestor
 import androidx.compose.ui.test.hasTestTag
 import androidx.compose.ui.test.hasText
-import androidx.compose.ui.test.StateRestorationTester
 import androidx.compose.ui.test.onNodeWithTag
 import androidx.compose.ui.test.performClick
 import androidx.compose.ui.test.runComposeUiTest
@@ -55,11 +59,22 @@ class LomaAppTest {
 
     @Test
     fun abaEscolhidaSobreviveARecriacao() = runComposeUiTest {
-        val restoration = StateRestorationTester(this)
-        restoration.setContent { LomaApp() }
+        // StateRestorationTester não existe no desktop (skiko): o ciclo salvar/recriar/restaurar é feito à mão.
+        var registry by mutableStateOf(SaveableStateRegistry(null) { true })
+        var visivel by mutableStateOf(true)
+        setContent {
+            CompositionLocalProvider(LocalSaveableStateRegistry provides registry) {
+                if (visivel) LomaApp()
+            }
+        }
 
         onNodeWithTag("tab_clientes").performClick()
-        restoration.emulateSaveAndRestore()
+        val salvo = runOnIdle { registry.performSave() }
+        runOnIdle { visivel = false }
+        runOnIdle {
+            registry = SaveableStateRegistry(salvo) { true }
+            visivel = true
+        }
 
         onNodeWithTag("tab_clientes").assertIsSelected()
         onNodeWithTag("screen_title").assertTextEquals("Clientes")
