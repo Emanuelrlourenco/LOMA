@@ -24,6 +24,8 @@ android {
 
 dependencies {
     implementation(project(":shared:ui"))
+    implementation(libs.androidx.activity.compose)
+    implementation(libs.androidx.core.splashscreen)
     testImplementation(libs.junit)
     testImplementation(libs.kotlin.test.junit)
 }
