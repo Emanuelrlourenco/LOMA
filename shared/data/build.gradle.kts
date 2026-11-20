@@ -19,7 +19,9 @@ kotlin {
     iosSimulatorArm64()
 
     sourceSets {
+        all { languageSettings.optIn("kotlin.time.ExperimentalTime") }
         commonMain.dependencies {
+            api(project(":shared:salon"))
             implementation(libs.androidx.room3.runtime)
             implementation(libs.androidx.sqlite.bundled)
             implementation(libs.kotlinx.coroutines.core)
@@ -27,6 +29,9 @@ kotlin {
         commonTest.dependencies {
             implementation(libs.kotlin.test)
             implementation(libs.kotlinx.coroutines.test)
+        }
+        jvmTest.dependencies {
+            implementation(libs.androidx.room3.testing)
         }
     }
 }
