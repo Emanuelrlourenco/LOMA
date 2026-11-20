@@ -21,7 +21,7 @@ android {
         minSdk = libs.versions.android.minSdk.get().toInt()
         targetSdk = libs.versions.android.targetSdk.get().toInt()
         versionCode = runNumber
-        versionName = "0.1.$runNumber"
+        versionName = "0.2.$runNumber"
     }
 
     signingConfigs {
