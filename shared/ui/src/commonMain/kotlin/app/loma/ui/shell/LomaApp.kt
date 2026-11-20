@@ -11,6 +11,12 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import app.loma.data.SettingKeys
+import kotlinx.coroutines.launch
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
@@ -42,13 +48,21 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun LomaApp(
     graph: LomaGraph,
-    darkTheme: Boolean = isSystemInDarkTheme(),
+    darkTheme: Boolean? = null,
     showIntro: Boolean = true,
     soundEnabled: Boolean = true,
+    onDarkThemeChange: (Boolean) -> Unit = {},
 ) {
     val navigator = rememberNavigator()
-    CompositionLocalProvider(LocalLomaGraph provides graph, LocalNavigator provides navigator) {
-        LomaRoot(navigator, darkTheme, showIntro, soundEnabled)
+    val scope = rememberCoroutineScope()
+    val saved by remember(graph) { graph.repository.setting(SettingKeys.THEME) }.collectAsState(initial = null)
+    val dark = resolveDarkTheme(darkTheme, saved, isSystemInDarkTheme())
+    LaunchedEffect(dark) { onDarkThemeChange(dark) }
+    val toggle = ThemeToggle(dark) {
+        scope.launch { graph.repository.putSetting(SettingKeys.THEME, if (dark) THEME_LIGHT else THEME_DARK) }
+    }
+    CompositionLocalProvider(LocalLomaGraph provides graph, LocalNavigator provides navigator, LocalThemeToggle provides toggle) {
+        LomaRoot(navigator, dark, showIntro, soundEnabled)
     }
 }
 

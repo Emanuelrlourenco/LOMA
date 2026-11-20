@@ -17,6 +17,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -48,7 +49,7 @@ fun ClientAvatar(name: String, photoFile: String?, size: Int = 68, modifier: Mod
     Box(modifier.size(size.dp).clip(shape).background(LomaPalette.Lilac, shape), contentAlignment = Alignment.Center) {
         val b = bitmap
         if (b != null) {
-            Image(b, contentDescription = null, contentScale = ContentScale.Crop, modifier = Modifier.size(size.dp))
+            Image(b, contentDescription = null, contentScale = ContentScale.Crop, modifier = Modifier.size(size.dp).testTag("avatar_photo"))
         } else {
             Text(
                 initials(name),
