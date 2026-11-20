@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>LOMA — Desbloqueio</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFFFFF}a:hover{color:#5ED6B4}
+button{font:inherit;color:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #17165C; color: #FFFFFF; font-family: 'Outfit', system-ui, sans-serif; position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 72px 32px 36px">
+  <div aria-hidden="true" style="position: absolute; right: -60px; top: -60px; width: 220px; height: 220px; border-radius: 110px; background: #23227A"></div>
+  <span style="position: relative; width: 84px; height: 84px; border-radius: 30px; background: #B69CF2; color: #17165C; display: flex; align-items: center; justify-content: center; font-size: 32px; font-weight: 800">C</span>
+  <h1 style="position: relative; margin: 20px 0 0; font-size: 28px; font-weight: 800; text-align: center">Bem-vinda de volta,<br>Carla</h1>
+  <p style="position: relative; margin: 8px 0 0; font-size: 15px; color: #C9C6F0">Digite seu PIN para abrir o LOMA</p>
+
+  <div aria-label="{{pinLabel}}" style="display: flex; gap: 18px; margin-top: 32px; height: 18px; align-items: center">
+    <sc-for list="{{dots}}" as="d" hint-placeholder-count="4">
+      <sc-if value="{{d.on}}" hint-placeholder-val="{{false}}">
+        <span style="width: 18px; height: 18px; border-radius: 9px; background: #5ED6B4"></span>
+      </sc-if>
+      <sc-if value="{{d.off}}" hint-placeholder-val="{{true}}">
+        <span style="width: 14px; height: 14px; border-radius: 9px; border: 2px solid #8F8CD6"></span>
+      </sc-if>
+    </sc-for>
+  </div>
+
+  <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px 22px; margin-top: 40px; width: 280px">
+    <sc-for list="{{keys}}" as="k" hint-placeholder-count="12">
+      <sc-if value="{{k.digit}}" hint-placeholder-val="{{true}}">
+        <button aria-label="{{k.label}}" onClick="{{k.press}}" style="height: 72px; border: 0; border-radius: 36px; background: #23227A; color: #FFFFFF; font-size: 28px; font-weight: 600; cursor: pointer">{{k.label}}</button>
+      </sc-if>
+      <sc-if value="{{k.back}}" hint-placeholder-val="{{false}}">
+        <button aria-label="Apagar" onClick="{{k.press}}" style="height: 72px; border: 0; border-radius: 36px; background: transparent; color: #FFFFFF; display: flex; align-items: center; justify-content: center; cursor: pointer">
+          <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5h11v14H9l-6-7z"/><path d="M12.5 9.5l5 5M17.5 9.5l-5 5"/></svg>
+        </button>
+      </sc-if>
+      <sc-if value="{{k.blank}}" hint-placeholder-val="{{false}}">
+        <span></span>
+      </sc-if>
+    </sc-for>
+  </div>
+
+  <a href="T-Inicio.dc.html" style="margin-top: auto; height: 52px; padding: 0 22px; border-radius: 26px; border: 1.5px solid #5ED6B4; color: #5ED6B4; display: flex; align-items: center; gap: 10px; font-size: 16px; font-weight: 700; text-decoration: none">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><path d="M12 4a7 7 0 0 0-7 7v3"/><path d="M19 11a7 7 0 0 0-3-5.7"/><path d="M9 20c1-2 1-4 1-6a2 2 0 0 1 4 0c0 3-.5 5-1.5 7"/><path d="M15.8 19c.4-1.4.5-3 .5-5"/></svg>
+    Usar digital
+  </a>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { pin: '' };
+  }
+  renderVals() {
+    const pin = this.state.pin;
+    const dots = [0, 1, 2, 3].map((i) => ({ on: i < pin.length, off: i >= pin.length }));
+    const labels = ['1', '2', '3', '4', '5', '6', '7', '8', '9', '', '0', '<'];
+    const keys = labels.map((l) => ({
+      label: l,
+      digit: l !== '' && l !== '<',
+      back: l === '<',
+      blank: l === '',
+      press: () => {
+        if (l === '<') this.setState({ pin: pin.slice(0, -1) });
+        else if (pin.length < 4) this.setState({ pin: pin + l });
+      }
+    }));
+    return { dots, keys, pinLabel: pin.length + ' de 4 dígitos digitados' };
+  }
+}
+</script>
+</body>
+</html>
