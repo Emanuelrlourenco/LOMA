@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>LOMA — Detalhe do atendimento</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:#FFFFFF}a:hover{color:#5ED6B4}
+button{font:inherit;color:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; box-sizing: border-box; background: #F3F2FA; font-family: 'Outfit', system-ui, sans-serif; position: relative; overflow: hidden; padding-top: 14px">
+  <div style="height: 830px; box-sizing: border-box; background: #17165C; color: #FFFFFF; border-radius: 34px 34px 0 0; padding: 18px 22px 26px; display: flex; flex-direction: column">
+    <div style="display: flex; align-items: center; justify-content: space-between">
+      <a href="T-Inicio.dc.html" aria-label="Fechar" style="width: 40px; height: 40px; border-radius: 20px; background: #2A2985; display: flex; align-items: center; justify-content: center; color: #FFFFFF">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 9l6 6 6-6"/></svg>
+      </a>
+      <span style="height: 30px; padding: 0 12px; border-radius: 15px; background: #B69CF2; color: #17165C; font-size: 13px; font-weight: 700; display: flex; align-items: center; gap: 6px">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 2"/></svg>
+        Agendado · não confirmada
+      </span>
+    </div>
+
+    <h1 style="margin: 22px 0 0; font-size: 44px; line-height: 1.02; font-weight: 800; letter-spacing: -1.2px">Maria<br>Souza</h1>
+    <p style="margin: 8px 0 0; font-size: 17px; color: #C9C6F0">Coloração + escova</p>
+
+    <div role="note" style="margin-top: 16px; border-radius: 18px; background: #FF7A66; color: #3A0B03; padding: 12px 14px; display: flex; gap: 10px; align-items: flex-start">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex: none; margin-top: 1px"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17v.5"/></svg>
+      <span style="font-size: 14px; line-height: 1.35"><strong>Alergia: amônia.</strong> Usar coloração sem amônia.</span>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); margin-top: 20px; text-align: center">
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 4px 0">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5ED6B4" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="13" r="7"/><path d="M12 10v3l2 2M9 3h6"/></svg>
+        <span style="font-size: 14px; font-weight: 600">13:00 – 15:30</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 4px 0; border-left: 1px solid #3A3994; border-right: 1px solid #3A3994">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5ED6B4" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="5" width="16" height="15" rx="3"/><path d="M4 10h16M9 3v4M15 3v4"/></svg>
+        <span style="font-size: 14px; font-weight: 600">Sex, 20 nov</span>
+      </div>
+      <div style="display: flex; flex-direction: column; align-items: center; gap: 6px; padding: 4px 0">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#5ED6B4" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="3" y="6" width="18" height="14" rx="3"/><path d="M3 10h18"/><circle cx="16.5" cy="15" r="1.2"/></svg>
+        <span style="font-size: 14px; font-weight: 600">R$ 250</span>
+      </div>
+    </div>
+
+    <h2 style="margin: 22px 0 8px; font-size: 15px; font-weight: 700; color: #C9C6F0">Serviços</h2>
+    <div style="display: flex; flex-direction: column; gap: 6px">
+      <div style="display: flex; justify-content: space-between; font-size: 16px"><span>Coloração <span style="color: #C9C6F0">· 1h30</span></span><span style="font-weight: 700">R$ 180</span></div>
+      <div style="display: flex; justify-content: space-between; font-size: 16px"><span>Escova <span style="color: #C9C6F0">· 1h</span></span><span style="font-weight: 700">R$ 70</span></div>
+    </div>
+
+    <h2 style="margin: 18px 0 6px; font-size: 15px; font-weight: 700; color: #C9C6F0">Anotação</h2>
+    <p style="margin: 0; font-size: 15px; line-height: 1.4">Última fórmula: 7.1 + oxidante 20 vol, 35 min. Levar cartela de tons.</p>
+
+    <div style="margin-top: auto; display: flex; flex-direction: column; gap: 10px">
+      <button style="height: 56px; border: 0; border-radius: 28px; background: #5ED6B4; color: #0B3A2E; font-size: 16px; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.4-4.2A8 8 0 1 1 8.3 18.7z"/></svg>
+        Confirmar pelo WhatsApp
+      </button>
+      <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px">
+        <button style="height: 52px; border: 1.5px solid #FFFFFF; border-radius: 26px; background: transparent; color: #FFFFFF; font-size: 15px; font-weight: 700; cursor: pointer">Confirmado</button>
+        <a href="T-Concluir.dc.html" style="height: 52px; border-radius: 26px; background: #FFFFFF; color: #17165C; font-size: 15px; font-weight: 800; display: flex; align-items: center; justify-content: center; text-decoration: none">Concluir</a>
+      </div>
+      <button style="height: 44px; border: 0; background: transparent; color: #FFB3A6; font-size: 15px; font-weight: 600; cursor: pointer">Desmarcar</button>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"$preview":{"width":390,"height":844}}'>
+class Component extends DCLogic {
+  renderVals() {
+    return {};
+  }
+}
+</script>
+</body>
+</html>

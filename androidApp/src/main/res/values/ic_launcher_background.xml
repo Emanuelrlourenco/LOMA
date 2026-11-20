@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- Copyright 2026 The LOMA Authors -->
+<!-- Gerado por tools/icone/gerar_icone.py; não editar à mão. -->
+<resources>
+    <color name="ic_launcher_background">#17165C</color>
+</resources>

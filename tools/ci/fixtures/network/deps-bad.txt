@@ -1,0 +1,3 @@
+# Fixture: dependência de rede; check-dependencies.sh deve recusar.
+androidx.activity:activity-compose:1.13.0
+io.ktor:ktor-client-core:3.0.0

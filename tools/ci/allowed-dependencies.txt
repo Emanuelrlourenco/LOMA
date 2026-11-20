@@ -1,0 +1,15 @@
+# Prefixos grupo:artefato permitidos no app (uma linha por prefixo; "#" comenta).
+org.jetbrains.kotlin
+org.jetbrains.kotlinx
+org.jetbrains.compose
+org.jetbrains.androidx
+org.jetbrains.skiko
+androidx.
+com.google.devtools.ksp
+org.jetbrains:annotations
+com.google.guava:listenablefuture
+io.github.takahirom.roborazzi
+junit
+org.hamcrest
+# Anotações de nulidade usadas pelo AndroidX (sem código executável de rede).
+org.jspecify:jspecify

@@ -1,0 +1,39 @@
+# SPDX-License-Identifier: Apache-2.0
+# Copyright 2026 The LOMA Authors
+#
+# Projeto Xcode do LOMA, gerado com: xcodegen generate --spec iosApp/project.yml
+name: LOMA
+options:
+  deploymentTarget:
+    iOS: "17.0"
+settings:
+  base:
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    SWIFT_VERSION: "5.0"
+targets:
+  LOMA:
+    type: application
+    platform: iOS
+    scheme: {}
+    sources:
+      - path: iosApp
+    settings:
+      base:
+        PRODUCT_NAME: LOMA
+        PRODUCT_BUNDLE_IDENTIFIER: app.loma.calendar
+        INFOPLIST_FILE: iosApp/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        TARGETED_DEVICE_FAMILY: "1"
+        MARKETING_VERSION: "0.1.0"
+        CURRENT_PROJECT_VERSION: "1"
+        ENABLE_USER_SCRIPT_SANDBOXING: NO
+        # O framework Kotlin existe só para iosArm64 e iosSimulatorArm64 (Macs com Apple Silicon).
+        "EXCLUDED_ARCHS[sdk=iphonesimulator*]": x86_64
+        FRAMEWORK_SEARCH_PATHS: ["$(inherited)", "$(SRCROOT)/../shared/ui/build/xcode-frameworks/$(CONFIGURATION)/$(SDK_NAME)"]
+        OTHER_LDFLAGS: ["$(inherited)", "-framework", "LomaShared"]
+    preBuildScripts:
+      - name: Compilar o código Kotlin (LomaShared)
+        basedOnDependencyAnalysis: false
+        script: |
+          cd "$SRCROOT/.."
+          ./gradlew :shared:ui:embedAndSignAppleFrameworkForXcode

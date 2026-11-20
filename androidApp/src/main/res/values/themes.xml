@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<!-- Copyright 2026 The LOMA Authors -->
+<resources>
+    <!-- Janela do app: sem barra de ação, fundo da marca. -->
+    <style name="Theme.Loma" parent="android:Theme.Material.Light.NoActionBar">
+        <item name="android:windowBackground">@color/loma_fundo</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+    </style>
+
+    <!-- Abertura do sistema: marinho liso, ícone transparente, para a animação do app começar sem "pulo". -->
+    <style name="Theme.Loma.Splash" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/ic_launcher_background</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splash_transparente</item>
+        <item name="postSplashScreenTheme">@style/Theme.Loma</item>
+    </style>
+
+    <color name="loma_fundo">#F3F2FA</color>
+</resources>

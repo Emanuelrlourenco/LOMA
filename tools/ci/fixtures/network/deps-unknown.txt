@@ -1,0 +1,2 @@
+androidx.activity:activity-compose:1.13.0
+com.example.desconhecida:coisa:1.0

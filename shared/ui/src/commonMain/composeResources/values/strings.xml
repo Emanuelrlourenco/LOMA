@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- SPDX-License-Identifier: Apache-2.0 -->
+<resources>
+    <string name="tab_inicio">Início</string>
+    <string name="tab_agenda">Agenda</string>
+    <string name="tab_clientes">Clientes</string>
+    <string name="tab_financeiro">Financeiro</string>
+    <string name="placeholder_soon">Em construção — chega na próxima fase</string>
+    <string name="nav_label">Navegação principal</string>
+    <string name="intro_desc">Abertura do LOMA</string>
+    <string name="intro_skip">Pular abertura</string>
+</resources>

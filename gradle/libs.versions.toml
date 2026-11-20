@@ -1,0 +1,52 @@
+# Versões fixadas em 2026-11-20 por pesquisa nas notas de lançamento oficiais
+# (o ambiente de desenvolvimento não alcança o Maven; a resolução real acontece no CI):
+# - Kotlin 2.4.20 (07/09/2026) · Compose Multiplatform 1.12.2 e o material3 que o acompanha
+# - AGP 9.4.1 (exige Gradle >= 9.6.0; o wrapper usa 9.8.2) · KSP 2.3.12 (independente da versão do Kotlin)
+# - Room3 3.0.3 (09/09/2026) com androidx.sqlite 2.7.1 (guia oficial de Room KMP) · coroutines 1.11.0 · activity 1.13.0 · core-splashscreen 1.2.0
+[versions]
+kotlin = "2.4.20"
+compose-multiplatform = "1.12.2"
+compose-material3 = "1.12.0-alpha03"
+agp = "9.4.1"
+ksp = "2.3.12"
+room3 = "3.0.3"
+sqlite = "2.7.1"
+coroutines = "1.11.0"
+activity-compose = "1.13.0"
+core-splashscreen = "1.2.0"
+roborazzi = "1.63.0"
+android-compileSdk = "37"
+android-targetSdk = "37"
+android-minSdk = "26"
+
+[libraries]
+kotlin-test = { module = "org.jetbrains.kotlin:kotlin-test", version.ref = "kotlin" }
+kotlin-test-junit = { module = "org.jetbrains.kotlin:kotlin-test-junit", version.ref = "kotlin" }
+junit = { module = "junit:junit", version = "4.13.2" }
+kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "coroutines" }
+kotlinx-coroutines-test = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-test", version.ref = "coroutines" }
+androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "activity-compose" }
+androidx-core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "core-splashscreen" }
+
+androidx-room3-runtime = { module = "androidx.room3:room3-runtime", version.ref = "room3" }
+androidx-room3-compiler = { module = "androidx.room3:room3-compiler", version.ref = "room3" }
+androidx-sqlite-bundled = { module = "androidx.sqlite:sqlite-bundled", version.ref = "sqlite" }
+
+compose-runtime = { module = "org.jetbrains.compose.runtime:runtime", version.ref = "compose-multiplatform" }
+compose-foundation = { module = "org.jetbrains.compose.foundation:foundation", version.ref = "compose-multiplatform" }
+compose-ui = { module = "org.jetbrains.compose.ui:ui", version.ref = "compose-multiplatform" }
+compose-ui-backhandler = { module = "org.jetbrains.compose.ui:ui-backhandler", version.ref = "compose-multiplatform" }
+compose-ui-test = { module = "org.jetbrains.compose.ui:ui-test", version.ref = "compose-multiplatform" }
+compose-material3 = { module = "org.jetbrains.compose.material3:material3", version.ref = "compose-material3" }
+compose-components-resources = { module = "org.jetbrains.compose.components:components-resources", version.ref = "compose-multiplatform" }
+roborazzi-compose-desktop = { module = "io.github.takahirom.roborazzi:roborazzi-compose-desktop", version.ref = "roborazzi" }
+
+[plugins]
+kotlin-multiplatform = { id = "org.jetbrains.kotlin.multiplatform", version.ref = "kotlin" }
+kotlin-compose = { id = "org.jetbrains.kotlin.plugin.compose", version.ref = "kotlin" }
+compose-multiplatform = { id = "org.jetbrains.compose", version.ref = "compose-multiplatform" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-kmp-library = { id = "com.android.kotlin.multiplatform.library", version.ref = "agp" }
+ksp = { id = "com.google.devtools.ksp", version.ref = "ksp" }
+room3 = { id = "androidx.room3", version.ref = "room3" }
+roborazzi = { id = "io.github.takahirom.roborazzi", version.ref = "roborazzi" }

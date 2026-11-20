@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>LOMA — Ícone Assinatura (variações)</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+</style>
+</helmet>
+<div style="width: {{size}}px; height: {{size}}px; display: block; font-family: 'Outfit', system-ui, sans-serif">
+  <sc-if value="{{isPonto}}" hint-placeholder-val="{{true}}">
+    <svg role="img" aria-label="Assinatura com ponto final" width="{{size}}" height="{{size}}" viewBox="0 0 108 108">
+      <rect width="108" height="108" fill="#17165C"></rect>
+      <text x="50" y="62" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="28" letter-spacing="-0.8" fill="#FFFFFF">loma</text>
+      <circle cx="81" cy="58" r="4.6" fill="#5ED6B4"></circle>
+    </svg>
+  </sc-if>
+  <sc-if value="{{isOMenta}}" hint-placeholder-val="{{false}}">
+    <svg role="img" aria-label="Assinatura com o menta" width="{{size}}" height="{{size}}" viewBox="0 0 108 108">
+      <rect width="108" height="108" fill="#17165C"></rect>
+      <text x="54" y="62" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="29" letter-spacing="-0.8" fill="#FFFFFF">l<tspan fill="#5ED6B4">o</tspan>ma</text>
+    </svg>
+  </sc-if>
+  <sc-if value="{{isEmpilhado}}" hint-placeholder-val="{{false}}">
+    <svg role="img" aria-label="Assinatura empilhada" width="{{size}}" height="{{size}}" viewBox="0 0 108 108">
+      <rect width="108" height="108" fill="#17165C"></rect>
+      <text x="30" y="52" font-family="Outfit, sans-serif" font-weight="800" font-size="33" letter-spacing="-1" fill="#FFFFFF">lo</text>
+      <text x="30" y="80" font-family="Outfit, sans-serif" font-weight="800" font-size="33" letter-spacing="-1" fill="#FFFFFF">ma</text>
+      <circle cx="78" cy="75" r="5" fill="#5ED6B4"></circle>
+    </svg>
+  </sc-if>
+  <sc-if value="{{isMenta}}" hint-placeholder-val="{{false}}">
+    <svg role="img" aria-label="Assinatura em fundo menta" width="{{size}}" height="{{size}}" viewBox="0 0 108 108">
+      <rect width="108" height="108" fill="#5ED6B4"></rect>
+      <text x="50" y="62" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="28" letter-spacing="-0.8" fill="#17165C">loma</text>
+      <circle cx="81" cy="58" r="4.6" fill="#FFFFFF"></circle>
+    </svg>
+  </sc-if>
+  <sc-if value="{{isLilas}}" hint-placeholder-val="{{false}}">
+    <svg role="img" aria-label="Assinatura em fundo lilás com traço" width="{{size}}" height="{{size}}" viewBox="0 0 108 108">
+      <rect width="108" height="108" fill="#B69CF2"></rect>
+      <text x="54" y="58" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="29" letter-spacing="-0.8" fill="#17165C">loma</text>
+      <rect x="33" y="66" width="42" height="6" rx="3" fill="#17165C"></rect>
+      <circle cx="80" cy="69" r="3" fill="#FFFFFF"></circle>
+    </svg>
+  </sc-if>
+  <sc-if value="{{isClaro}}" hint-placeholder-val="{{false}}">
+    <svg role="img" aria-label="Assinatura em fundo claro" width="{{size}}" height="{{size}}" viewBox="0 0 108 108">
+      <rect width="108" height="108" fill="#FFFFFF"></rect>
+      <circle cx="54" cy="54" r="33" fill="#F3F2FA"></circle>
+      <text x="50" y="62" text-anchor="middle" font-family="Outfit, sans-serif" font-weight="800" font-size="28" letter-spacing="-0.8" fill="#17165C">loma</text>
+      <circle cx="81" cy="58" r="4.6" fill="#5ED6B4"></circle>
+    </svg>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"variant":{"editor":"enum","options":["ponto","o-menta","empilhado","menta","lilas","claro"],"default":"ponto"},"size":{"editor":"int","default":168,"min":16,"max":512},"$preview":{"width":168,"height":168}}'>
+class Component extends DCLogic {
+  renderVals() {
+    const v = this.props.variant ?? 'ponto';
+    return {
+      size: this.props.size ?? 168,
+      isPonto: v === 'ponto', isOMenta: v === 'o-menta', isEmpilhado: v === 'empilhado',
+      isMenta: v === 'menta', isLilas: v === 'lilas', isClaro: v === 'claro'
+    };
+  }
+}
+</script>
+</body>
+</html>
