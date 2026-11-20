@@ -41,4 +41,69 @@
     <string name="sample_client">Maria Souza</string>
     <string name="sample_service_1">Hair color</string>
     <string name="sample_service_2">Blow-dry</string>
+    <string name="clients_title">Clients</string>
+    <string name="clients_search">Search by name or phone</string>
+    <string name="clients_sort_name">Name</string>
+    <string name="clients_sort_last">Last visit</string>
+    <string name="clients_show_archived">Show archived</string>
+    <string name="clients_new">+ New client</string>
+    <string name="clients_empty">No clients yet. Add the first one with “+ New client”.</string>
+    <string name="client_detail_title">Client record</string>
+    <string name="client_whatsapp">WhatsApp</string>
+    <string name="client_call">Call</string>
+    <string name="client_book">Book</string>
+    <string name="client_allergy">Allergy:</string>
+    <string name="stat_last">Last visit</string>
+    <string name="stat_visits">Visits</string>
+    <string name="stat_total">Total spent</string>
+    <string name="stat_ticket">Average</string>
+    <string name="client_preferences">Preferences</string>
+    <string name="client_notes">Notes</string>
+    <string name="client_history">History</string>
+    <string name="client_history_empty">No appointments yet.</string>
+    <string name="client_cancellations">%1$d cancellations</string>
+    <string name="client_more">More options</string>
+    <string name="menu_edit">Edit</string>
+    <string name="menu_archive">Archive</string>
+    <string name="menu_unarchive">Unarchive</string>
+    <string name="menu_delete">Delete</string>
+    <string name="delete_title">Delete %1$s?</string>
+    <string name="delete_text">Completed appointments stay in the finances as “Removed client” and future ones will be cancelled.</string>
+    <string name="cancel">Cancel</string>
+    <string name="client_removed">Removed client</string>
+    <string name="birthday_short">birthday %1$s</string>
+    <string name="client_new_title">New client</string>
+    <string name="client_edit_title">Edit client</string>
+    <string name="client_from_contacts">Pick from contacts</string>
+    <string name="client_photo_pick">Choose photo</string>
+    <string name="client_photo_remove">Remove photo</string>
+    <string name="client_name">Name</string>
+    <string name="client_phone">WhatsApp</string>
+    <string name="phone_invalid">Invalid number</string>
+    <string name="birthday_day">Day</string>
+    <string name="birthday_month">Month</string>
+    <string name="birthday_year">Year (optional)</string>
+    <string name="client_birthday">Birthday</string>
+    <string name="birthday_invalid">Invalid date</string>
+    <string name="client_allergies">Allergies and sensitivities</string>
+    <string name="client_archived">Archived</string>
+    <string name="reason_cancelou">cancelled</string>
+    <string name="reason_nao_compareceu">no-show</string>
+    <string name="reason_remarcou">rescheduled</string>
+    <string name="history_unscheduled">Cancelled · %1$s</string>
+    <string name="no_messaging">No messaging app found</string>
+    <string-array name="months_short">
+        <item>Jan</item>
+        <item>Feb</item>
+        <item>Mar</item>
+        <item>Apr</item>
+        <item>May</item>
+        <item>Jun</item>
+        <item>Jul</item>
+        <item>Aug</item>
+        <item>Sep</item>
+        <item>Oct</item>
+        <item>Nov</item>
+        <item>Dec</item>
+    </string-array>
 </resources>

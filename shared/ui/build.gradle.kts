@@ -39,6 +39,9 @@ kotlin {
             implementation(libs.compose.components.resources)
             implementation(libs.compose.ui.backhandler)
         }
+        androidMain.dependencies {
+            implementation(libs.androidx.activity.compose)
+        }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
         }

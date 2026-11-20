@@ -20,6 +20,9 @@ import androidx.compose.runtime.CompositionLocalProvider
 import app.loma.ui.LocalLomaGraph
 import app.loma.ui.LomaGraph
 import androidx.compose.runtime.key
+import app.loma.ui.clients.ClientDetailScreen
+import app.loma.ui.clients.ClientEditScreen
+import app.loma.ui.clients.ClientsScreen
 import app.loma.ui.intro.LomaIntro
 import app.loma.ui.settings.MessageTemplateScreen
 import app.loma.ui.settings.ServiceEditScreen
@@ -58,13 +61,21 @@ private fun LomaRoot(navigator: Navigator, darkTheme: Boolean, showIntro: Boolea
             if (!navigator.pop()) tab.back()?.let { tabName = it.name }
         }
         val top = navigator.stack.lastOrNull()
+        // A ficha da cliente aparece com a barra inferior (aba Clientes), como na tela aprovada.
+        val tabOfRoute = if (top is Route.ClientDetail) LomaTab.Clientes else null
         Box(Modifier.fillMaxSize().background(LocalLomaColors.current.background)) {
-            if (top == null) {
+            if (top == null || tabOfRoute != null) {
                 Column(Modifier.fillMaxSize()) {
                     Box(Modifier.fillMaxWidth().weight(1f)) {
-                        TabContent(tab)
+                        if (top == null) TabContent(tab) else RouteContent(top)
                     }
-                    LomaBottomBar(selected = tab, onSelect = { tabName = it.name })
+                    LomaBottomBar(
+                        selected = tabOfRoute ?: tab,
+                        onSelect = {
+                            navigator.clear()
+                            tabName = it.name
+                        },
+                    )
                 }
             } else {
                 RouteContent(top)
@@ -85,7 +96,10 @@ private fun mutableStateOfName(tab: LomaTab) = androidx.compose.runtime.mutableS
 /** Conteúdo de cada aba; as telas reais entram nas tasks seguintes. */
 @Composable
 private fun TabContent(tab: LomaTab) {
-    PlaceholderScreen(stringResource(tab.label))
+    when (tab) {
+        LomaTab.Clientes -> ClientsScreen()
+        else -> PlaceholderScreen(stringResource(tab.label))
+    }
 }
 
 /** Tela do topo da pilha. */
@@ -96,6 +110,8 @@ private fun RouteContent(route: Route) {
         Route.Services -> ServicesScreen()
         is Route.ServiceEdit -> key(route) { ServiceEditScreen(route.id) }
         Route.MessageTemplate -> MessageTemplateScreen()
+        is Route.ClientDetail -> key(route) { ClientDetailScreen(route.id) }
+        is Route.ClientEdit -> key(route) { ClientEditScreen(route.id) }
         else -> PlaceholderScreen(route.encode().substringBefore(':'))
     }
 }

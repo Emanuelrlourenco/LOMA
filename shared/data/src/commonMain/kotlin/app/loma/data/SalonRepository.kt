@@ -7,6 +7,7 @@ import app.loma.salon.Appointment
 import app.loma.salon.Client
 import app.loma.salon.Service
 import kotlin.time.Clock
+import kotlin.time.Instant
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
@@ -51,6 +52,10 @@ class SalonRepository(db: LomaDatabase, private val clock: Clock) {
 
     suspend fun saveClient(c: Client): Long =
         if (c.id == 0L) clients.insert(c.toEntity()) else c.id.also { clients.update(c.toEntity()) }
+
+    /** Última visita de cada cliente (para ordenar a lista). */
+    fun lastVisits(): Flow<Map<Long, Instant>> =
+        appointments.observeLastVisits().map { list -> list.associate { it.clientId to Instant.fromEpochMilliseconds(it.lastStartMs) } }
 
     suspend fun setArchived(id: Long, archived: Boolean) = clients.setArchived(id, archived)
 

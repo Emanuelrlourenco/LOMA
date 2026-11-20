@@ -58,6 +58,12 @@ abstract class AppointmentDao {
     @Query("SELECT * FROM appointments WHERE status IN ('AGENDADO', 'CONFIRMADO') AND endMs < :nowMs ORDER BY startMs, id")
     abstract fun observeOpenEndingBefore(nowMs: Long): Flow<List<AppointmentWithServices>>
 
+    @Query(
+        "SELECT clientId, MAX(startMs) AS lastStartMs FROM appointments " +
+            "WHERE status = 'CONCLUIDO' AND clientId IS NOT NULL GROUP BY clientId",
+    )
+    abstract fun observeLastVisits(): Flow<List<ClientLastVisit>>
+
     @Query("DELETE FROM appointments WHERE id = :id")
     abstract suspend fun delete(id: Long)
 
@@ -70,3 +76,6 @@ abstract class AppointmentDao {
     )
     abstract suspend fun unscheduleFutureOfClient(clientId: Long, nowMs: Long)
 }
+
+/** Última visita (início do último atendimento concluído) de cada cliente. */
+data class ClientLastVisit(val clientId: Long, val lastStartMs: Long)

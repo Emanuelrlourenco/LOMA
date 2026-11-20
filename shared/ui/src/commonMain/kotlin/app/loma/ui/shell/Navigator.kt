@@ -4,7 +4,10 @@
 package app.loma.ui.shell
 
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.saveable.listSaver
 import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.runtime.staticCompositionLocalOf
@@ -25,6 +28,13 @@ class Navigator(initial: List<Route> = emptyList()) {
         entries.removeAt(entries.lastIndex)
         return true
     }
+
+    fun clear() {
+        entries.clear()
+    }
+
+    /** Cliente recém-cadastrada a partir do agendamento (o agendamento a escolhe ao voltar). */
+    var clientResult: Long? by mutableStateOf(null)
 
     fun replaceTop(r: Route) {
         if (entries.isNotEmpty()) entries.removeAt(entries.lastIndex)

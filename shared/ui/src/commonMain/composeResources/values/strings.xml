@@ -41,4 +41,69 @@
     <string name="sample_client">Maria Souza</string>
     <string name="sample_service_1">Coloração</string>
     <string name="sample_service_2">Escova</string>
+    <string name="clients_title">Clientes</string>
+    <string name="clients_search">Buscar por nome ou telefone</string>
+    <string name="clients_sort_name">Nome</string>
+    <string name="clients_sort_last">Última visita</string>
+    <string name="clients_show_archived">Mostrar arquivadas</string>
+    <string name="clients_new">+ Nova cliente</string>
+    <string name="clients_empty">Nenhuma cliente ainda. Cadastre a primeira em “+ Nova cliente”.</string>
+    <string name="client_detail_title">Ficha da cliente</string>
+    <string name="client_whatsapp">WhatsApp</string>
+    <string name="client_call">Ligar</string>
+    <string name="client_book">Agendar</string>
+    <string name="client_allergy">Alergia:</string>
+    <string name="stat_last">Última visita</string>
+    <string name="stat_visits">Visitas</string>
+    <string name="stat_total">Total gasto</string>
+    <string name="stat_ticket">Ticket médio</string>
+    <string name="client_preferences">Preferências</string>
+    <string name="client_notes">Observações</string>
+    <string name="client_history">Histórico</string>
+    <string name="client_history_empty">Nenhum atendimento ainda.</string>
+    <string name="client_cancellations">%1$d desmarques</string>
+    <string name="client_more">Mais opções</string>
+    <string name="menu_edit">Editar</string>
+    <string name="menu_archive">Arquivar</string>
+    <string name="menu_unarchive">Desarquivar</string>
+    <string name="menu_delete">Apagar</string>
+    <string name="delete_title">Apagar %1$s?</string>
+    <string name="delete_text">Os atendimentos concluídos continuam no financeiro como “Cliente removida” e os futuros serão desmarcados.</string>
+    <string name="cancel">Cancelar</string>
+    <string name="client_removed">Cliente removida</string>
+    <string name="birthday_short">aniversário %1$s</string>
+    <string name="client_new_title">Nova cliente</string>
+    <string name="client_edit_title">Editar cliente</string>
+    <string name="client_from_contacts">Escolher dos contatos</string>
+    <string name="client_photo_pick">Escolher foto</string>
+    <string name="client_photo_remove">Remover foto</string>
+    <string name="client_name">Nome</string>
+    <string name="client_phone">WhatsApp</string>
+    <string name="phone_invalid">Número inválido</string>
+    <string name="birthday_day">Dia</string>
+    <string name="birthday_month">Mês</string>
+    <string name="birthday_year">Ano (opcional)</string>
+    <string name="client_birthday">Aniversário</string>
+    <string name="birthday_invalid">Data inválida</string>
+    <string name="client_allergies">Alergias e sensibilidades</string>
+    <string name="client_archived">Arquivada</string>
+    <string name="reason_cancelou">cancelou</string>
+    <string name="reason_nao_compareceu">não compareceu</string>
+    <string name="reason_remarcou">remarcou</string>
+    <string name="history_unscheduled">Desmarcado · %1$s</string>
+    <string name="no_messaging">Nenhum app de mensagem encontrado</string>
+    <string-array name="months_short">
+        <item>jan</item>
+        <item>fev</item>
+        <item>mar</item>
+        <item>abr</item>
+        <item>mai</item>
+        <item>jun</item>
+        <item>jul</item>
+        <item>ago</item>
+        <item>set</item>
+        <item>out</item>
+        <item>nov</item>
+        <item>dez</item>
+    </string-array>
 </resources>
