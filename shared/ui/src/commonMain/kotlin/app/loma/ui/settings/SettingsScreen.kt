@@ -3,6 +3,17 @@
 
 package app.loma.ui.settings
 
+import app.loma.ui.generated.resources.client_photo_remove
+import app.loma.ui.generated.resources.client_photo_pick
+import app.loma.ui.components.PillKind
+import app.loma.ui.clients.rememberPhotoPicker
+import app.loma.ui.clients.ClientAvatar
+import androidx.compose.ui.Alignment
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -45,7 +56,8 @@ import org.jetbrains.compose.resources.stringResource
 /** Ajustes: perfil, serviços e mensagem do WhatsApp. */
 @Composable
 fun SettingsScreen() {
-    val repo = LocalLomaGraph.current.repository
+    val graph = LocalLomaGraph.current
+    val repo = graph.repository
     val nav = LocalNavigator.current
     val scope = rememberCoroutineScope()
     var name by rememberSaveable { mutableStateOf("") }
@@ -61,6 +73,29 @@ fun SettingsScreen() {
         Column(Modifier.verticalScroll(rememberScrollState()).padding(horizontal = 18.dp)) {
             SectionLabel(stringResource(Res.string.settings_profile))
             LomaCard {
+                val photo by remember { repo.setting(SettingKeys.PROFILE_PHOTO) }.collectAsState(initial = null)
+                val current = photo?.takeIf { it.isNotBlank() }
+                // A foto vale na hora; trocar ou remover apaga o arquivo anterior.
+                fun setPhoto(file: String?) = scope.launch {
+                    repo.putSetting(SettingKeys.PROFILE_PHOTO, file.orEmpty())
+                    current?.let { if (it != file) graph.photos.delete(it) }
+                }
+                val photoPicker = rememberPhotoPicker { uri ->
+                    if (uri != null) scope.launch { graph.photos.importPhoto(uri)?.let { setPhoto(it) } }
+                }
+                Row(verticalAlignment = Alignment.CenterVertically) {
+                    ClientAvatar(name.ifBlank { "?" }.take(1), current, size = 72)
+                    Spacer(Modifier.width(14.dp))
+                    Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                        if (photoPicker != null) {
+                            PillButton(stringResource(Res.string.client_photo_pick), onClick = photoPicker, kind = PillKind.Secondary, testTag = "profile_photo_pick")
+                        }
+                        if (current != null) {
+                            PillButton(stringResource(Res.string.client_photo_remove), onClick = { setPhoto(null) }, kind = PillKind.Danger, testTag = "profile_photo_remove")
+                        }
+                    }
+                }
+                Spacer(Modifier.height(14.dp))
                 LomaTextField(name, { name = it }, stringResource(Res.string.settings_profile_name), testTag = "profile_name")
                 Spacer(Modifier.height(10.dp))
                 PillButton(stringResource(Res.string.save), onClick = { scope.launch { repo.putSetting(SettingKeys.PROFILE_NAME, name.trim()) } }, testTag = "profile_save")

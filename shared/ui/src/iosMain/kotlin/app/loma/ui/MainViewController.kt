@@ -12,6 +12,7 @@ import app.loma.platform.IosPhotoStore
 import app.loma.ui.shell.LomaApp
 import kotlin.time.Clock
 import kotlinx.datetime.TimeZone
+import platform.UIKit.UIUserInterfaceStyle
 import platform.UIKit.UIViewController
 
 private val iosGraph: LomaGraph by lazy {
@@ -24,4 +25,13 @@ private val iosGraph: LomaGraph by lazy {
 }
 
 /** Ponto de entrada do iOS: o app SwiftUI hospeda este controlador (iosApp/iosApp/ContentView.swift). */
-fun MainViewController(): UIViewController = ComposeUIViewController { LomaApp(iosGraph) }
+fun MainViewController(): UIViewController {
+    lateinit var controller: UIViewController
+    // A barra de status segue o tema do app (o botão sol/lua pode diferir do iPhone).
+    controller = ComposeUIViewController {
+        LomaApp(iosGraph, onDarkThemeChange = { dark ->
+            controller.overrideUserInterfaceStyle = if (dark) UIUserInterfaceStyle.UIUserInterfaceStyleDark else UIUserInterfaceStyle.UIUserInterfaceStyleLight
+        })
+    }
+    return controller
+}

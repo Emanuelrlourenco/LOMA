@@ -186,6 +186,8 @@
     <string name="card_done">Completed · %1$s</string>
     <string name="no_appointments">No appointments on this day</string>
     <string name="open_settings">Settings</string>
+    <string name="theme_to_light">Switch to light theme</string>
+    <string name="theme_to_dark">Switch to dark theme</string>
     <string name="notices">Notices</string>
     <string name="new_appointment">New appointment</string>
     <string-array name="months_full">

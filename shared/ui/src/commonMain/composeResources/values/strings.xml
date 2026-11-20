@@ -186,6 +186,8 @@
     <string name="card_done">Concluída · %1$s</string>
     <string name="no_appointments">Nenhum atendimento neste dia</string>
     <string name="open_settings">Ajustes</string>
+    <string name="theme_to_light">Mudar para o tema claro</string>
+    <string name="theme_to_dark">Mudar para o tema azul</string>
     <string name="notices">Avisos</string>
     <string name="new_appointment">Novo atendimento</string>
     <string-array name="months_full">

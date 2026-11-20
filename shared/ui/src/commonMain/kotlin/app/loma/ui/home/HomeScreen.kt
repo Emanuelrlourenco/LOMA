@@ -3,6 +3,10 @@
 
 package app.loma.ui.home
 
+import app.loma.ui.clients.ClientAvatar
+import app.loma.ui.shell.LocalThemeToggle
+import app.loma.ui.generated.resources.theme_to_light
+import app.loma.ui.generated.resources.theme_to_dark
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -126,6 +130,7 @@ fun HomeScreen() {
     val nextMonth = monthStart.plus(DatePeriod(months = 1))
 
     val profileName by remember { repo.setting(SettingKeys.PROFILE_NAME) }.collectAsState(initial = null)
+    val profilePhoto by remember { repo.setting(SettingKeys.PROFILE_PHOTO) }.collectAsState(initial = null)
     val dayAppointments by remember(selectedText) { repo.appointmentsOn(selected, zone) }.collectAsState(initial = emptyList())
     val monthAppointments by remember(monthStart) { repo.appointmentsBetween(monthStart, nextMonth, zone) }.collectAsState(initial = emptyList())
     val unsettled by remember { repo.withoutSettlement() }.collectAsState(initial = emptyList())
@@ -147,12 +152,21 @@ fun HomeScreen() {
             Column(Modifier.windowInsetsPadding(WindowInsets.safeDrawing.only(WindowInsetsSides.Top + WindowInsetsSides.Horizontal)).padding(start = 20.dp, end = 20.dp, top = 18.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically) {
                     val initial = profileName?.trim()?.take(1)?.uppercase().orEmpty().ifEmpty { "L" }
-                    Box(
-                        Modifier.size(44.dp).testTag("home_avatar").background(LomaPalette.Lilac, RoundedCornerShape(16.dp))
-                            .semantics { contentDescription = "" }.clickable(role = Role.Button) { nav.push(Route.Settings) },
-                        contentAlignment = Alignment.Center,
-                    ) { Text(initial, style = type.body.copy(fontSize = 18.sp, fontWeight = FontWeight.ExtraBold), color = LomaPalette.Navy) }
+                    ClientAvatar(
+                        initial, profilePhoto?.takeIf { it.isNotBlank() }, size = 54,
+                        modifier = Modifier.testTag("home_avatar").semantics { contentDescription = "" }
+                            .clickable(role = Role.Button) { nav.push(Route.Settings) },
+                    )
                     Spacer(Modifier.weight(1f))
+                    LocalThemeToggle.current?.let { theme ->
+                        val label = stringResource(if (theme.dark) Res.string.theme_to_light else Res.string.theme_to_dark)
+                        Box(
+                            Modifier.size(44.dp).testTag("theme_toggle").background(colors.surface, RoundedCornerShape(22.dp))
+                                .semantics { contentDescription = label }.clickable(role = Role.Button, onClick = theme.toggle),
+                            contentAlignment = Alignment.Center,
+                        ) { Icon(if (theme.dark) LomaIcons.Sol else LomaIcons.Lua, contentDescription = null, tint = colors.textPrimary, modifier = Modifier.size(22.dp)) }
+                        Spacer(Modifier.width(10.dp))
+                    }
                     val notices = stringResource(Res.string.notices)
                     Box(Modifier.size(44.dp).background(colors.surface, RoundedCornerShape(22.dp)).semantics { contentDescription = notices }, contentAlignment = Alignment.Center) {
                         Icon(LomaIcons.Sino, contentDescription = null, tint = colors.textPrimary, modifier = Modifier.size(22.dp))
@@ -166,7 +180,7 @@ fun HomeScreen() {
                     in 12..17 -> Res.string.greeting_afternoon
                     else -> Res.string.greeting_evening
                 }
-                Text(stringResource(greeting), Modifier.padding(top = 12.dp).testTag("home_greeting"), style = type.body.copy(fontSize = 24.sp, lineHeight = 26.sp), color = colors.textPrimary)
+                Text(stringResource(greeting), Modifier.padding(top = 12.dp).testTag("home_greeting"), style = type.body.copy(fontSize = 21.sp, lineHeight = 24.sp), color = colors.textPrimary)
                 profileName?.takeIf { it.isNotBlank() }?.let {
                     Text(it, Modifier.testTag("home_name").semantics { heading() }, style = type.screenTitle.copy(fontSize = 32.sp, lineHeight = 35.sp, letterSpacing = (-0.6).sp), color = colors.textPrimary)
                 }
