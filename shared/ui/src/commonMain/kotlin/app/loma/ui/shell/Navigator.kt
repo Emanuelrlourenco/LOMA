@@ -13,7 +13,8 @@ import androidx.compose.runtime.staticCompositionLocalOf
 class Navigator(initial: List<Route> = emptyList()) {
     private val entries = mutableStateListOf<Route>().apply { addAll(initial) }
 
-    val stack: List<Route> get() = entries
+    // Cópia comum: a lista observável não compara conteúdo com ==.
+    val stack: List<Route> get() = entries.toList()
 
     fun push(r: Route) {
         entries.add(r)
