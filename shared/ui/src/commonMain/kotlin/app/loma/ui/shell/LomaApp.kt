@@ -26,6 +26,7 @@ import app.loma.ui.appointments.AppointmentEditScreen
 import app.loma.ui.clients.ClientDetailScreen
 import app.loma.ui.clients.ClientEditScreen
 import app.loma.ui.clients.ClientsScreen
+import app.loma.ui.home.HomeScreen
 import app.loma.ui.intro.LomaIntro
 import app.loma.ui.settings.MessageTemplateScreen
 import app.loma.ui.settings.ServiceEditScreen
@@ -100,6 +101,7 @@ private fun mutableStateOfName(tab: LomaTab) = androidx.compose.runtime.mutableS
 @Composable
 private fun TabContent(tab: LomaTab) {
     when (tab) {
+        LomaTab.Inicio -> HomeScreen()
         LomaTab.Clientes -> ClientsScreen()
         else -> PlaceholderScreen(stringResource(tab.label))
     }
