@@ -44,6 +44,10 @@ android {
     }
 }
 
+kotlin {
+    compilerOptions { optIn.add("kotlin.time.ExperimentalTime") }
+}
+
 dependencies {
     implementation(project(":shared:ui"))
     implementation(libs.androidx.activity.compose)

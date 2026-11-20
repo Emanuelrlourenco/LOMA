@@ -16,6 +16,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.backhandler.BackHandler
+import androidx.compose.runtime.CompositionLocalProvider
+import app.loma.ui.LocalLomaGraph
+import app.loma.ui.LomaGraph
 import app.loma.ui.intro.LomaIntro
 import app.loma.ui.intro.rememberReducedMotion
 import app.loma.ui.theme.LocalLomaColors
@@ -26,23 +29,41 @@ import org.jetbrains.compose.resources.stringResource
 @OptIn(ExperimentalComposeUiApi::class)
 @Composable
 fun LomaApp(
+    graph: LomaGraph,
     darkTheme: Boolean = isSystemInDarkTheme(),
     showIntro: Boolean = true,
     soundEnabled: Boolean = true,
 ) {
+    val navigator = rememberNavigator()
+    CompositionLocalProvider(LocalLomaGraph provides graph, LocalNavigator provides navigator) {
+        LomaRoot(navigator, darkTheme, showIntro, soundEnabled)
+    }
+}
+
+@OptIn(ExperimentalComposeUiApi::class)
+@Composable
+private fun LomaRoot(navigator: Navigator, darkTheme: Boolean, showIntro: Boolean, soundEnabled: Boolean) {
     LomaTheme(darkTheme = darkTheme) {
         var tabName by rememberSaveable { mutableStateOfName(LomaTab.Inicio) }
         // A abertura toca só na abertura do zero: girar a tela ou recriar a Activity não repete.
         var introDone by rememberSaveable { androidx.compose.runtime.mutableStateOf(!showIntro) }
         val tab = LomaTab.valueOf(tabName)
-        BackHandler(enabled = tab != LomaTab.Inicio) {
-            tab.back()?.let { tabName = it.name }
+        // Voltar fecha primeiro a tela empilhada; sem telas, vale a regra das abas.
+        BackHandler(enabled = navigator.stack.isNotEmpty() || tab != LomaTab.Inicio) {
+            if (!navigator.pop()) tab.back()?.let { tabName = it.name }
         }
-        Column(Modifier.fillMaxSize().background(LocalLomaColors.current.background)) {
-            Box(Modifier.fillMaxWidth().weight(1f)) {
-                PlaceholderScreen(stringResource(tab.label))
+        val top = navigator.stack.lastOrNull()
+        Box(Modifier.fillMaxSize().background(LocalLomaColors.current.background)) {
+            if (top == null) {
+                Column(Modifier.fillMaxSize()) {
+                    Box(Modifier.fillMaxWidth().weight(1f)) {
+                        TabContent(tab)
+                    }
+                    LomaBottomBar(selected = tab, onSelect = { tabName = it.name })
+                }
+            } else {
+                RouteContent(top)
             }
-            LomaBottomBar(selected = tab, onSelect = { tabName = it.name })
         }
         if (!introDone) {
             LomaIntro(
@@ -55,3 +76,15 @@ fun LomaApp(
 }
 
 private fun mutableStateOfName(tab: LomaTab) = androidx.compose.runtime.mutableStateOf(tab.name)
+
+/** Conteúdo de cada aba; as telas reais entram nas tasks seguintes. */
+@Composable
+private fun TabContent(tab: LomaTab) {
+    PlaceholderScreen(stringResource(tab.label))
+}
+
+/** Tela do topo da pilha. */
+@Composable
+private fun RouteContent(route: Route) {
+    PlaceholderScreen(route.encode().substringBefore(':'))
+}

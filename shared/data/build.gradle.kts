@@ -22,7 +22,7 @@ kotlin {
         all { languageSettings.optIn("kotlin.time.ExperimentalTime") }
         commonMain.dependencies {
             api(project(":shared:salon"))
-            implementation(libs.androidx.room3.runtime)
+            api(libs.androidx.room3.runtime)
             implementation(libs.androidx.sqlite.bundled)
             implementation(libs.kotlinx.coroutines.core)
         }

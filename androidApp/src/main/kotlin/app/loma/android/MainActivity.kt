@@ -15,6 +15,7 @@ class MainActivity : ComponentActivity() {
         installSplashScreen()
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
-        setContent { LomaApp() }
+        val graph = (application as LomaApplication).graph
+        setContent { LomaApp(graph) }
     }
 }
