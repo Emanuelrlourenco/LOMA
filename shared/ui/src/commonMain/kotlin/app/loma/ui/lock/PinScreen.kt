@@ -64,9 +64,10 @@ internal fun PinScreen(
     footer: @Composable ColumnScope.() -> Unit = {},
 ) {
     val type = LocalLomaTypography.current
-    // O fundo segura os toques: nada por trás do bloqueio recebe clique.
+    // O fundo recebe os toques (sem consumir, para não cancelar os botões): o que está por trás
+    // do bloqueio deixa de ser atingido.
     Box(Modifier.fillMaxSize().testTag(tag).background(LockColors.Background).pointerInput(Unit) {
-        awaitPointerEventScope { while (true) awaitPointerEvent().changes.forEach { it.consume() } }
+        awaitPointerEventScope { while (true) awaitPointerEvent() }
     }) {
         Box(Modifier.align(Alignment.TopEnd).offset(x = 60.dp, y = (-60).dp).size(220.dp).background(LockColors.Key, CircleShape))
         Column(
