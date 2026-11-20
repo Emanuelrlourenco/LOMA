@@ -22,7 +22,7 @@ jobs:
       - name: XcodeGen
         run: brew install xcodegen
       - name: Testes no simulador iOS
-        run: ./gradlew --stacktrace --continue :shared:salon:iosSimulatorArm64Test :shared:ui:iosSimulatorArm64Test
+        run: ./gradlew --stacktrace --continue :shared:salon:iosSimulatorArm64Test :shared:ui:iosSimulatorArm64Test :shared:platform:iosSimulatorArm64Test
       - name: Projeto Xcode
         run: xcodegen generate --spec iosApp/project.yml
       - name: Build do app (simulador)
