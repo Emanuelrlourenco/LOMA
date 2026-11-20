@@ -11,7 +11,9 @@ Saídas:
   reduzido a 2/3 em volta do centro para aparecer igual ao canvas.
 - iOS / referência: tools/icone/loma-icone.svg com o desenho em 108 sem redução.
 
-Uso: python3 tools/icone/gerar_icone.py   (precisa de fonttools e uharfbuzz)
+- iOS: PNG 1024×1024 sem transparência em iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/.
+
+Uso: python3 tools/icone/gerar_icone.py   (precisa de fonttools, uharfbuzz, cairosvg e Pillow)
 """
 import os
 import sys
@@ -25,6 +27,7 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)
 FONTE = os.path.join(RAIZ, "shared/ui/src/commonMain/composeResources/font/outfit_extrabold.ttf")
 RES = os.path.join(RAIZ, "androidApp/src/main/res")
 SVG = os.path.join(RAIZ, "tools/icone/loma-icone.svg")
+PNG_IOS = os.path.join(RAIZ, "iosApp/iosApp/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png")
 
 MARINHO, MENTA, BRANCO = "#17165C", "#5ED6B4", "#FFFFFF"
 TEXTO, TAMANHO, ESPACO, CENTRO_X, BASE_Y = "loma", 29.0, -0.8, 54.0, 62.0
@@ -126,6 +129,14 @@ def main():
     svg += [f'  <path fill="{MENTA if l == "o" else BRANCO}" d="{d}"/>' for l, d in cheio]
     svg.append("</svg>")
     escrever(SVG, "\n".join(svg) + "\n")
+
+    import io
+    import cairosvg
+    from PIL import Image
+    png = cairosvg.svg2png(url=SVG, output_width=1024, output_height=1024)
+    os.makedirs(os.path.dirname(PNG_IOS), exist_ok=True)
+    Image.open(io.BytesIO(png)).convert("RGB").save(PNG_IOS, optimize=True)
+    print("gerado", os.path.relpath(PNG_IOS, RAIZ))
 
 
 if __name__ == "__main__":

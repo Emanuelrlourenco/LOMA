@@ -19,8 +19,13 @@ kotlin {
             enable = true
         }
     }
-    iosArm64()
-    iosSimulatorArm64()
+    // Framework estático "LomaShared" que o app iOS (iosApp/) incorpora.
+    listOf(iosArm64(), iosSimulatorArm64()).forEach { target ->
+        target.binaries.framework {
+            baseName = "LomaShared"
+            isStatic = true
+        }
+    }
 
     sourceSets {
         commonMain.dependencies {
