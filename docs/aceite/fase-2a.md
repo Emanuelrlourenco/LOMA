@@ -40,3 +40,10 @@ concluir com valor final, desmarcar, reabrir, desfazer), o Início com o dia do 
 15. **Permissões.** Ajustes do Android › Apps › LOMA › Permissões: continua "Nenhuma permissão".
 
 Anote qualquer passo que não aconteceu como descrito (número do passo e o que apareceu).
+
+## Extra (20/11): foto do perfil e botão de tema
+
+16. **Ajustes → Perfil → Escolher foto.** Escolha uma foto. Ela aparece na hora em Ajustes e, ao voltar, no quadrado do canto superior esquerdo do Início.
+17. **Remover foto** em Ajustes: volta a inicial do nome.
+18. **Início → botão ao lado do sininho.** No tema azul aparece o sol: tocar deixa o app claro (ícones da barra de status ficam escuros). No claro aparece a lua: tocar volta ao azul.
+19. Feche o app e abra de novo: o tema escolhido continua.
