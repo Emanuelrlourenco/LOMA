@@ -6,13 +6,12 @@ package app.loma.ui.shell
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.runDesktopComposeUiTest
-import io.github.takahirom.roborazzi.ExperimentalRoborazziApi
 import io.github.takahirom.roborazzi.captureRoboImage
 import java.util.Locale
 import kotlin.test.BeforeTest
 import kotlin.test.Test
 
-@OptIn(ExperimentalTestApi::class, ExperimentalRoborazziApi::class)
+@OptIn(ExperimentalTestApi::class)
 class LomaShellScreenshotTest {
 
     @BeforeTest
