@@ -3,6 +3,7 @@
 
 package app.loma.ui.shell
 
+import app.loma.ui.TestGraph
 import androidx.compose.ui.test.ExperimentalTestApi
 import androidx.compose.ui.test.onRoot
 import androidx.compose.ui.test.runDesktopComposeUiTest
@@ -21,13 +22,13 @@ class LomaShellScreenshotTest {
 
     @Test
     fun shellClaro() = runDesktopComposeUiTest(width = 390, height = 844) {
-        setContent { LomaApp(darkTheme = false, showIntro = false) }
+        setContent { LomaApp(graph = TestGraph().graph, darkTheme = false, showIntro = false) }
         onRoot().captureRoboImage("screenshots/shell-claro.png")
     }
 
     @Test
     fun shellEscuro() = runDesktopComposeUiTest(width = 390, height = 844) {
-        setContent { LomaApp(darkTheme = true, showIntro = false) }
+        setContent { LomaApp(graph = TestGraph().graph, darkTheme = true, showIntro = false) }
         onRoot().captureRoboImage("screenshots/shell-escuro.png")
     }
 }

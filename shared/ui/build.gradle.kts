@@ -28,7 +28,10 @@ kotlin {
     }
 
     sourceSets {
+        all { languageSettings.optIn("kotlin.time.ExperimentalTime") }
         commonMain.dependencies {
+            api(project(":shared:data"))
+            api(project(":shared:platform"))
             implementation(libs.compose.runtime)
             implementation(libs.compose.foundation)
             implementation(libs.compose.ui)

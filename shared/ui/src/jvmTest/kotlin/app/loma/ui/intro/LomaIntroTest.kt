@@ -3,6 +3,7 @@
 
 package app.loma.ui.intro
 
+import app.loma.ui.TestGraph
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -75,7 +76,7 @@ class LomaIntroTest {
         var visivel by mutableStateOf(true)
         setContent {
             CompositionLocalProvider(LocalSaveableStateRegistry provides registry) {
-                if (visivel) LomaApp(darkTheme = false)
+                if (visivel) LomaApp(graph = TestGraph().graph, darkTheme = false)
             }
         }
         onNodeWithTag("loma_intro").assertExists()
