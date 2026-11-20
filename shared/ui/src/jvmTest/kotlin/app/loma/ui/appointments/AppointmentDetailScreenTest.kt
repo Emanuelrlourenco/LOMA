@@ -60,7 +60,7 @@ class AppointmentDetailScreenTest {
         setContent { TestHost(g.graph) { AppointmentDetailScreen(id) } }
         waitUntil(timeoutMillis = 5_000) { runCatching { onNodeWithTag("confirm_whatsapp").assertExists() }.isSuccess }
 
-        onNodeWithTag("confirm_whatsapp").performScrollTo().performClick()
+        onNodeWithTag("confirm_whatsapp").performClick()
 
         waitUntil(timeoutMillis = 5_000) { g.messaging.opened.isNotEmpty() }
         val esperado = ConfirmationMessage.render(
@@ -84,7 +84,7 @@ class AppointmentDetailScreenTest {
         setContent { TestHost(g.graph) { AppointmentDetailScreen(id) } }
         waitUntil(timeoutMillis = 5_000) { runCatching { onNodeWithTag("confirm_whatsapp").assertExists() }.isSuccess }
 
-        onNodeWithTag("confirm_whatsapp").performScrollTo().performClick()
+        onNodeWithTag("confirm_whatsapp").performClick()
         waitUntil(timeoutMillis = 5_000) { runCatching { onNodeWithTag("app_WHATSAPP_BUSINESS").assertExists() }.isSuccess }
         onNodeWithTag("app_WHATSAPP_BUSINESS").performClick()
 
@@ -92,7 +92,7 @@ class AppointmentDetailScreenTest {
         waitUntil(timeoutMillis = 5_000) { g.messaging.opened.size == 1 }
         assertEquals(MessagingApp.WHATSAPP_BUSINESS, g.messaging.opened.single().app)
 
-        onNodeWithTag("confirm_whatsapp").performScrollTo().performClick()
+        onNodeWithTag("confirm_whatsapp").performClick()
         waitUntil(timeoutMillis = 5_000) { g.messaging.opened.size == 2 }
         onNodeWithTag("app_WHATSAPP_BUSINESS").assertDoesNotExist()
     }
@@ -114,7 +114,7 @@ class AppointmentDetailScreenTest {
         setContent { TestHost(g.graph) { AppointmentDetailScreen(id) } }
         waitUntil(timeoutMillis = 5_000) { runCatching { onNodeWithTag("unschedule").assertExists() }.isSuccess }
 
-        onNodeWithTag("unschedule").performScrollTo().performClick()
+        onNodeWithTag("unschedule").performClick()
         onNodeWithTag("reason_CANCELOU").performClick()
         waitForData { g.repository.appointment(id).first()!!.status == AppointmentStatus.DESMARCADO }
         assertEquals(CancelReason.CANCELOU, g.status(id).cancelReason)
