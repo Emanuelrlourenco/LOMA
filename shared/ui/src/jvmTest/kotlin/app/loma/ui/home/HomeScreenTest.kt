@@ -138,6 +138,7 @@ class HomeScreenTest {
         g.photos.files["perfil.jpg"] = testPng()
         runBlocking { g.repository.putSetting(SettingKeys.PROFILE_PHOTO, "perfil.jpg") }
         setContent { TestHost(g.graph) { HomeScreen() } }
-        esperaTag("avatar_photo")
+        // O avatar é um botão: a foto fica dentro dele, na árvore sem mesclar.
+        waitUntil(timeoutMillis = 5_000) { runCatching { onNodeWithTag("avatar_photo", useUnmergedTree = true).assertExists() }.isSuccess }
     }
 }

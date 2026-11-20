@@ -78,7 +78,7 @@ class SalonScreenshotTest {
     }
 
     private fun ComposeUiTest.espera(tag: String) =
-        waitUntil(timeoutMillis = 5_000) { runCatching { onNodeWithTag(tag).assertExists() }.isSuccess }
+        waitUntil(timeoutMillis = 5_000) { runCatching { onNodeWithTag(tag, useUnmergedTree = true).assertExists() }.isSuccess }
 
     @Test
     fun inicioClaro() = shoot("inicio-claro", "day_summary") { LomaApp(it.g.graph, darkTheme = false, showIntro = false) }
