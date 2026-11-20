@@ -111,7 +111,8 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          versao="0.1.${GITHUB_RUN_NUMBER}"
+          fase=$(grep -oE 'versionName = "0\.[0-9]+' androidApp/build.gradle.kts | grep -oE '0\.[0-9]+')
+          versao="${fase}.${GITHUB_RUN_NUMBER}"
           notas="LOMA versão ${versao} (commit ${GITHUB_SHA::7}). Baixe LOMA.apk e instale por cima da versão anterior."
           git tag -f loma-mais-recente "$GITHUB_SHA"
           git push -f origin refs/tags/loma-mais-recente
