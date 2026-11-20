@@ -6,6 +6,7 @@ plugins {
     alias(libs.plugins.android.kmp.library)
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.roborazzi)
 }
 
 kotlin {
@@ -28,9 +29,15 @@ kotlin {
             implementation(libs.compose.ui)
             implementation(libs.compose.material3)
             implementation(libs.compose.components.resources)
+            implementation(libs.compose.ui.backhandler)
         }
         commonTest.dependencies {
             implementation(libs.kotlin.test)
+        }
+        jvmTest.dependencies {
+            implementation(libs.compose.ui.test)
+            implementation(compose.desktop.currentOs)
+            implementation(libs.roborazzi.compose.desktop)
         }
     }
 }
@@ -38,4 +45,8 @@ kotlin {
 compose.resources {
     publicResClass = false
     packageOfResClass = "app.loma.ui.generated.resources"
+}
+
+roborazzi {
+    outputDir.set(file("screenshots"))
 }

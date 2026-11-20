@@ -35,8 +35,7 @@ jobs:
           path: "**/build/reports/tests/"
       - name: Schema do banco (para versionar)
         if: always()
-        uses: actions/upload-artifact@v4
-        with:
-          name: room-schemas
-          path: shared/data/schemas/
-          if-no-files-found: ignore
+        run: |
+          find shared/data/schemas -name '*.json' -print0 2>/dev/null | while IFS= read -r -d '' f; do
+            echo "::group::SCHEMA $f"; echo "===SCHEMA-BEGIN $f==="; base64 -w0 "$f"; echo; echo "===SCHEMA-END==="; echo "::endgroup::"
+          done
